@@ -1,3 +1,4 @@
+import {storage} from './storage.mjs?v=20261108-4';
 import {getCatalog,getCatalogMeta,subscribeCatalog,undoCatalog} from './catalog-store.mjs?v=20261108-4';
 import {refreshCatalog} from './catalog-sync.mjs?v=20261108-4';
 import {CATALOG,addInventory,INITIAL} from './engine.mjs?v=20261108-4';
@@ -8,9 +9,9 @@ const customKey='gleiswerk.customSets.v1';
 const date=s=>new Intl.DateTimeFormat('de-CH',{day:'2-digit',month:'2-digit',year:'numeric'}).format(new Date(s.length===10?s+'T00:00:00Z':s));
 export function setupSetCatalog({onAdd,onMessage,onCatalogChange=()=>{}}){
  const $=s=>document.querySelector(s);let custom=[],limit=12,controller=null,runMessage='';
- try{const raw=JSON.parse(localStorage.getItem(customKey)||'[]');if(Array.isArray(raw))custom=raw.filter(s=>typeof s.key==='string'&&typeof s.name==='string'&&s.kind==='custom'&&s.parts&&Object.keys(s.parts).length&&Object.entries(s.parts).every(([id,n])=>Object.hasOwn(INITIAL,id)&&Number.isInteger(n)&&n>0&&n<=200)).slice(0,100).map(s=>({key:s.key,name:s.name.slice(0,80),article:typeof s.article==='string'?s.article.slice(0,30):'',parts:s.parts,kind:'custom',retired:false,note:'',source:null}));}catch{}
+ try{const raw=JSON.parse(storage.getItem(customKey)||'[]');if(Array.isArray(raw))custom=raw.filter(s=>typeof s.key==='string'&&typeof s.name==='string'&&s.kind==='custom'&&s.parts&&Object.keys(s.parts).length&&Object.entries(s.parts).every(([id,n])=>Object.hasOwn(INITIAL,id)&&Number.isInteger(n)&&n>0&&n<=200)).slice(0,100).map(s=>({key:s.key,name:s.name.slice(0,80),article:typeof s.article==='string'?s.article.slice(0,30):'',parts:s.parts,kind:'custom',retired:false,note:'',source:null}));}catch{}
  const all=()=>[...getCatalog().map(s=>({...s,key:s.article})),...custom];
- function persist(){try{localStorage.setItem(customKey,JSON.stringify(custom));}catch{onMessage('Die eigene Vorlage konnte nicht dauerhaft gespeichert werden.');}}
+ function persist(){try{storage.setItem(customKey,JSON.stringify(custom));}catch{onMessage('Die eigene Vorlage konnte nicht dauerhaft gespeichert werden.');}}
  function render(){
   const words=$('#set-search').value.trim().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().split(/\s+/).filter(Boolean).map(x=>/^\d+$/.test(x)?x.replace(/^0+(?=\d)/,''):x),kind=$('#set-kind').value,archived=$('#set-archived').checked;
   const list=all().filter(s=>(kind==='all'||s.kind===kind)&&(archived||!s.retired)&&words.every(w=>(s.article+' '+s.name+' '+(s.title||'')+' '+(s.kind==='starter'?'Startpackung Startset':'')+' '+(s.retired?'Archiv':'')).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().includes(w)));

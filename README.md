@@ -67,3 +67,11 @@ The baseline was checked on 2026-11-08 and includes all 33 H0 starter sets in th
 `npm test` checks geometry, all baseline sets, manufacturer parsing and pagination, catalog refresh and rollback, failures and cancellations, DOM interactions, legacy inventory preservation, exports and static assets at a project subpath. Manufacturer test excerpts are included under `tests/fixtures/`; no network is needed for tests. DOM checks do not replace visual browser testing.
 
 Each set links to its manufacturer evidence in the app. C4/C5 plans are reconstructed from the Märklin booklet at https://www.jrline.sk/Images/64/MA24905.pdf (PDF page 37 / printed page 12), using pooled starter-set inventory. Gleiswerk is an independent tool, not an official Märklin product.
+
+## Live pull-request previews
+
+Merge the preview workflow setup into the default branch once. For each same-repository pull request, **Build PR preview** runs the tests and uploads the static build. Its completion triggers the default branch's Pages deployment, which publishes the current production app and previews under `/previews/pr-N/` together. The link appears in each preview build's Actions summary and the Pages workflow summary. Production always builds from the default branch.
+
+Preview builds cannot deploy directly: their workflow has read-only repository access. The default-branch assembler checks that an artifact belongs to a successful preview run for the exact current PR commit and the same repository, validates its file names and size, and copies static files without executing PR code. Fork previews are excluded. No third-party preview service or additional secret is required.
+
+Previews have their own inventories, catalog cache, favorites and custom templates. Closing a PR removes its preview on the next Pages deployment. Artifacts are retained for 14 days; rerun the preview build to renew an old preview. Newly pushed commits become visible after the preview build and subsequent Pages deployment both succeed. If either fails, inspect its Actions run before using the link.

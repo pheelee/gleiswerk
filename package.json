@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "engines": {"node": ">=24"},
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "build": "node scripts/build.mjs",
     "catalog:update": "node scripts/update-catalog.mjs",
-    "test": "node test-engine.mjs && node test-catalog.mjs && node test-update-server.mjs && node test-update-client.mjs && node test-ui.mjs && node test-ui.mjs --legacy && node tests/static-build.mjs"
+    "test": "node test-engine.mjs && node test-catalog.mjs && node test-update-server.mjs && node test-update-client.mjs && node test-ui.mjs && node test-ui.mjs --legacy && node tests/static-build.mjs && node tests/previews.mjs"
   },
-  "devDependencies": {"linkedom": "0.18.12"}
+  "devDependencies": {
+    "linkedom": "0.18.12"
+  }
 }

@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {mkdtemp,writeFile,readFile,rm,mkdir} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join} from 'node:path';
+import {pathToFileURL} from 'node:url';
+import {execFileSync} from 'node:child_process';
+import {archiveEntries,matchingRun,assemblePreviews} from '../scripts/assemble-previews.mjs';
+import {storageKey,storage} from '../web/storage.mjs';
+assert.equal(storageKey('gleiswerk.inventory.v1','/gleiswerk/'),'gleiswerk.inventory.v1');
+assert.equal(storageKey('gleiswerk.inventory.v1','/gleiswerk/previews/pr-3/'),'preview.pr3.gleiswerk.inventory.v1');
+assert.notEqual(storageKey('stock','/previews/pr-2/'),storageKey('stock','/previews/pr-3/'));
+for(const invalid of ['../index.html\nindex.html','index.html\nmain.js\nmain.js','index.html\n.env','index.html\na/b.js','index.html\n--evil.js'])assert.throws(()=>archiveEntries(invalid));
+const pr={number:3,head:{sha:'abc',repo:{id:42}},base:{ref:'main'}},run={id:7,conclusion:'success',event:'pull_request',head_sha:'abc',head_repository:{id:42},pull_requests:[{number:3}]};
+assert.equal(matchingRun([run],pr,42),run);for(const change of [{head_sha:'old'},{head_repository:{id:99}},{event:'push'},{conclusion:'failure'}])assert.equal(matchingRun([{...run,...change}],pr,42),undefined);
+const temp=await mkdtemp(join(tmpdir(),'gleiswerk-preview-test-'));
+try {
+ const source=join(temp,'source');await mkdir(source);await writeFile(join(source,'index.html'),'<html><body><h1>Theme preview</h1></body></html>');await writeFile(join(source,'app.mjs'),'// example module');
+ const zip=join(temp,'build.zip');execFileSync('zip',['-q',zip,'index.html','app.mjs'],{cwd:source});const bytes=await readFile(zip),dist=pathToFileURL(join(temp,'dist')+'/');await mkdir(dist);await writeFile(new URL('index.html',dist),'Published production');
+ let current=[pr];const fetchImpl=async(url,options)=>{assert.equal(options.headers.Authorization,'Bearer ephemeral-test-token');const path=new URL(url).pathname;
+ if(path==='/repos/owner/repo')return Response.json({id:42,default_branch:'main'});
+ if(path.endsWith('/pulls'))return Response.json([...current,{...pr,number:9,head:{repo:{id:99}}}]);
+ if(path.endsWith('/runs'))return Response.json({workflow_runs:[run]});
+ if(path.endsWith('/artifacts'))return Response.json({artifacts:[{name:'pr-preview',id:8,expired:false}]});
+ if(path.endsWith('/zip'))return new Response(bytes);throw Error('Unexpected API request.');};
+ let result=await assemblePreviews({repository:'owner/repo',token:'ephemeral-test-token',fetchImpl,dist});assert.deepEqual(result,[3]);
+ assert((await readFile(new URL('previews/pr-3/index.html',dist),'utf8')).includes('Preview of PR #3'));
+ assert.equal(await readFile(new URL('index.html',dist),'utf8'),'Published production');
+ current=[];result=await assemblePreviews({repository:'owner/repo',token:'ephemeral-test-token',fetchImpl,dist});assert.deepEqual(result,[]);await assert.rejects(readFile(new URL('previews/pr-3/index.html',dist)),/ENOENT/);
+} finally {await rm(temp,{recursive:true,force:true});}
+console.log('PASS PR preview assembly, exact commit/repository matching, file validation, cleanup and isolated inventory keys');
