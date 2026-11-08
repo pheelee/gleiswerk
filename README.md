@@ -56,7 +56,7 @@ The baseline was checked on 2026-11-08 and includes all 33 H0 starter sets in th
 
 - Fourteen supported track component types, including the 188.3 mm base station.
 - R1/R2 circles, ovals and rounded rectangles, with bounded straight combinations and deduplicated symmetry.
-- Loading sidings, straight and curved passing stations, reconstructed C4/C5 manufacturer plans, independent concentric ovals and straight shuttle lines. C4 supports both original open-ended branches and buffer-terminated variants.
+- Loading sidings, straight and curved passing stations, two R1 ovals connected by equal-handed turnouts, reconstructed C4/C5 manufacturer plans, independent concentric ovals and straight shuttle lines. C4 supports both original open-ended branches and buffer-terminated variants.
 - A finite search, rather than an exhaustive arbitrary-network solver. Mixed-radius freeform networks, custom branching, inclines and bridges are outside scope.
 - Up to 64 pieces by default, 240 results and 4,500 candidates. Addition suggestions show at most 16 missing pieces.
 - Nominal joins and tangents are checked with 0.35 mm position tolerance, plus sampled 40 mm roadbed clearance. This is a plausibility check, not a manufacturer CAD or rolling-stock clearance guarantee. Rounded catalog angles cause about 0.15 mm closure remainder at the straight passing station.
@@ -81,3 +81,7 @@ Previews have their own inventories, catalog cache, favorites and custom templat
 The **Darstellung** control offers **Automatisch**, **Hell** and **Dunkel**. Automatic is the default and follows the browser's `prefers-color-scheme`, including changes while the app is open. A manual choice is saved locally and can be reset to Automatic. It is applied before styles load to avoid a light flash on a dark preference. Without JavaScript, the stylesheet still follows the browser preference. Theme changes synchronize across tabs.
 
 The palette covers catalog dialogs, forms, result cards and SVG drawings. Printed plans and exported SVGs use a self-contained light palette for readability. Theme preference is stored separately from inventories under `gleiswerk.theme.v1`. Tests check preference behavior, fallback when storage is unavailable, text contrast and drawing colors.
+
+### Stations with Kommunaldienst + Landwirtschaft
+
+29296 and 29653 each contain a left turnout. Their combined stock cannot supply the right turnout used by the conventional straight passing-loop template. The search also considers two R1 ovals connected by a crossover using two left turnouts, optionally with two 24224 countercurves for roughly 155 mm track-center spacing. The full-length variant fits their combined stock: 24 × 24130, 8 × 24172, 1 × 24188, 2 × 24224, 2 × 24611 and one base station. It occupies about 148 × 164 cm including the modeled track bed. This is a connected two-oval station arrangement, rather than one oval with a passing siding. Both handed versions and shorter straight combinations are checked for joins, stock and track-bed collisions.

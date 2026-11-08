@@ -1,7 +1,7 @@
-import {storage} from './storage.mjs?v=20261108-5';
-import {getCatalog,getCatalogMeta,subscribeCatalog,undoCatalog} from './catalog-store.mjs?v=20261108-5';
-import {refreshCatalog} from './catalog-sync.mjs?v=20261108-5';
-import {CATALOG,addInventory,INITIAL} from './engine.mjs?v=20261108-5';
+import {storage} from './storage.mjs?v=20261108-7';
+import {getCatalog,getCatalogMeta,subscribeCatalog,undoCatalog} from './catalog-store.mjs?v=20261108-7';
+import {refreshCatalog} from './catalog-sync.mjs?v=20261108-7';
+import {CATALOG,addInventory,INITIAL} from './engine.mjs?v=20261108-7';
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const icon=n=>`<svg aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const kinds={starter:'Startpackung',track:'Gleis-Ergänzung',extension:'Themen-Ergänzung',custom:'Eigene Vorlage'};

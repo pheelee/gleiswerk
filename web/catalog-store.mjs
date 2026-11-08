@@ -1,7 +1,7 @@
-import {storage} from './storage.mjs?v=20261108-5';
-import {SET_CATALOG,CATALOG_META} from './sets.mjs?v=20261108-5';
+import {storage} from './storage.mjs?v=20261108-7';
+import {SET_CATALOG,CATALOG_META} from './sets.mjs?v=20261108-7';
 const KEY='gleiswerk.catalog.v1';
-import {validateSet,PARTS} from './catalog-validation.mjs?v=20261108-5';
+import {validateSet,PARTS} from './catalog-validation.mjs?v=20261108-7';
 export {validateSet};
 const listeners=new Set();
 function validDate(s){return typeof s==='string'&&Number.isFinite(Date.parse(s));}

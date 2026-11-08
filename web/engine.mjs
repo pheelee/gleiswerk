@@ -1,5 +1,5 @@
 // C-Gleis geometry. Catalog angles/lengths are rounded. Units: mm/radians.
-import {SET_BY_ARTICLE} from './sets.mjs?v=20261108-5';
+import {SET_BY_ARTICLE} from './sets.mjs?v=20261108-7';
 export const CATALOG = [
  ['24172','Gerade','171,7 mm','Geraden'],['24188','Gerade','188,3 mm','Geraden'],['24077','Kurze Gerade','77,5 mm','Geraden'],['24094','Kurze Gerade','94,2 mm','Geraden'],['basis','Basisstation','188,3 mm','Geraden'],
  ['24130','Bogen R1','360 mm · 30°','Bögen'],['24230','Bogen R2','437,5 mm · 30°','Bögen'],['24224','Gegenbogen','437,5 mm · 24,3°','Bögen'],
@@ -60,6 +60,19 @@ export function passing(straights=['24188','24172'],loads=true){const b=new Layo
  if(loads){[p,c]=b.turnout(p,'24611');p=b.seq(p,['24172','24172']);[p,d]=b.turnout(p,'24611');p=b.seq(p,['24172','24188']);for(const x of [c,d])b.spur(x);}
  else p=b.seq(p,['24188','24172',...straights,'24172','24188']);
  b.seq(p,repeat('24130',6));b.seq(b.curve(a,'24224',-1),straights);b.curve(branch,'24224',1);return b;}
+// Two equal-handed turnouts connect two R1 ovals. Opposing S-curves
+// provide a 155 mm station track spacing without needing a right turnout.
+export function linkedOvals(straights=['24172','24172'],hand='24611',counter=true){
+ const b=new Layout(counter?'Bahnhof mit verbundenen R1-Ovalen':'R1-Ovale mit kompakter Gleisverbindung',counter?'Bahnhöfe':'Rundstrecken'),sign=hand==='24611'?1:-1;
+ let [main,branch]=b.turnout(P(),hand);
+ if(counter)branch=b.curve(branch,'24224',-sign);
+ // Rotating the same turnout through 180 degrees gives a matching branch.
+ const other=P(2*branch.x,2*branch.y,180);let [main2,branch2]=b.turnout(other,hand);
+ if(counter)b.curve(branch2,'24224',-sign);
+ for(let p of [main,main2]){p=b.seq(p,straights);p=b.seq(p,repeat('24130',6),-sign);p=b.seq(p,['24188',...straights]);b.seq(p,repeat('24130',6),-sign);}
+ b.note='Zwei R1-Ovale sind über eine Gleisverbindung aus zwei gleichsinnigen Weichen verbunden. '+(counter?'Mit zwei Gegenbögen beträgt der Abstand der parallelen Gleismitten rund 155 mm.':'Ohne Gegenbögen beträgt der Abstand der parallelen Gleismitten rund 77,5 mm.')+' Dies ist eine verbundene Zwei-Oval-Anlage, kein einzelnes Oval mit Ausweichgleis. Eine gemeinsame Einspeisung versorgt die Anlage.';
+ return b;
+}
 export function curvedStation(loads=true){const b=new Layout(loads?'Bogenbahnhof mit Ladegleisen':'Langer Bogenbahnhof','Bahnhöfe');const span=1080;
  let [li,lo]=b.curved(P(-360,360,-90),'24671'),[ri,ro]=b.curved(P(span+360,360,-90),'24672');
  li=b.seq(li,repeat('24130',2));lo=b.seq(lo,repeat('24130',2));ri=b.seq(ri,repeat('24130',2),-1);ro=b.seq(ro,repeat('24130',2),-1);
@@ -99,6 +112,7 @@ export function* candidates(inventory,limit=28){
  for(const hand of ['24611','24612'])yield singleLoading(hand,2,true,'24188',false);
  for(let n=1;n<=4;n++)yield loading(repeat('24188',n));
  const mains=combos(['24172','24188','24077','24094'],4),small=combos(['24172','24188','24077','24094'],2);
+ for(const hand of ['24611','24612'])for(const counter of [true,false])for(const straights of combos(['24172','24188'],3)){if(counter&&straights.length<2)continue;yield linkedOvals(straights,hand,counter);}
  for(const r of ['24130','24230'])for(const a of mains){if(12+a.length*2>limit)continue;yield oval(a,[],r);for(const b of small){if(!b.length||12+2*(a.length+b.length)>limit)continue;
   // Rounded rectangles identical under a quarter turn are represented once.
   if(a.reduce((s,x)=>s+L[x],0)<b.reduce((s,x)=>s+L[x],0))continue;
