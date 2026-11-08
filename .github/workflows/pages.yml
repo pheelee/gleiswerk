@@ -1,0 +1,68 @@
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches: [main, feature/catalog-refresh]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    if: github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - uses: actions/cache/restore@v4
+        with:
+          path: data/catalog.json
+          key: catalog-${{ github.run_id }}
+          restore-keys: catalog-
+      - name: Check current manufacturer catalog
+        id: catalog
+        continue-on-error: true
+        run: npm run catalog:update
+      - name: Keep previous catalog when manufacturer is unavailable
+        if: steps.catalog.outcome == 'failure'
+        run: echo "::warning::Catalog refresh failed. Publishing the previous catalog or shipped baseline."
+      - uses: actions/cache/save@v4
+        if: steps.catalog.outcome == 'success'
+        with:
+          path: data/catalog.json
+          key: catalog-${{ github.run_id }}
+      - run: npm run build
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
