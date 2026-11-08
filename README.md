@@ -75,3 +75,9 @@ Merge the preview workflow setup into the default branch once. For each same-rep
 Preview builds cannot deploy directly: their workflow has read-only repository access. The default-branch assembler checks that an artifact belongs to a successful preview run for the exact current PR commit and the same repository, validates its file names and size, and copies static files without executing PR code. Fork previews are excluded. No third-party preview service or additional secret is required.
 
 Previews have their own inventories, catalog cache, favorites and custom templates. Closing a PR removes its preview on the next Pages deployment. Artifacts are retained for 14 days; rerun the preview build to renew an old preview. Newly pushed commits become visible after the preview build and subsequent Pages deployment both succeed. If either fails, inspect its Actions run before using the link.
+
+## Color theme
+
+The **Darstellung** control offers **Automatisch**, **Hell** and **Dunkel**. Automatic is the default and follows the browser's `prefers-color-scheme`, including changes while the app is open. A manual choice is saved locally and can be reset to Automatic. It is applied before styles load to avoid a light flash on a dark preference. Without JavaScript, the stylesheet still follows the browser preference. Theme changes synchronize across tabs.
+
+The palette covers catalog dialogs, forms, result cards and SVG drawings. Printed plans and exported SVGs use a self-contained light palette for readability. Theme preference is stored separately from inventories under `gleiswerk.theme.v1`. Tests check preference behavior, fallback when storage is unavailable, text contrast and drawing colors.
