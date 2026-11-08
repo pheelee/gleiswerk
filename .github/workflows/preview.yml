@@ -1,0 +1,38 @@
+name: Build PR preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pr-preview
+          path: dist
+          retention-days: 14
+          include-hidden-files: true
+      - name: Preview instructions
+        env:
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: |
+          echo "### Live preview" >> "$GITHUB_STEP_SUMMARY"
+          echo "The default-branch Pages workflow will publish this build at https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/previews/pr-${PR_NUMBER}/ once deployment succeeds." >> "$GITHUB_STEP_SUMMARY"
