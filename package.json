@@ -9,7 +9,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "catalog:update": "node scripts/update-catalog.mjs",
-    "test": "node test-engine.mjs && node test-catalog.mjs && node test-update-server.mjs && node test-update-client.mjs && node test-ui.mjs && node test-ui.mjs --legacy && node tests/static-build.mjs && node tests/previews.mjs"
+    "test": "node test-engine.mjs && node test-catalog.mjs && node test-update-server.mjs && node test-update-client.mjs && node test-ui.mjs && node test-ui.mjs --legacy && node tests/static-build.mjs && node tests/previews.mjs && node tests/theme.mjs"
   },
   "devDependencies": {
     "linkedom": "0.18.12"
