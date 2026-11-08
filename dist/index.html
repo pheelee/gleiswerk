@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="de">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#164c43">
+ <meta name="description" content="Dein Märklin C-Gleis-Bestand, deine nächste Strecke. Streckenvarianten mit berechneter Geometrie, Stücklisten und SVG-Export entdecken.">
+ <title>Gleiswerk · Dein C-Gleis-Planer</title>
+ <link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
+ <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+ <svg class="svg-sprites" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+  <symbol id="i-rail" viewBox="0 0 24 24"><path d="M8 3 5 21M16 3l3 18M7 7h10M6 12h12M5 17h14"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m12-6v6h-6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol>
+ </defs></svg>
+ <header class="topbar">
+  <a class="brand" href="#" aria-label="Gleiswerk Start"><span class="brand-mark"><svg><use href="#i-rail"/></svg></span>Gleiswerk<span class="brand-dot">.</span></a>
+  <span class="system-tag"><span></span>Märklin C-Gleis <b>H0</b></span>
+  <div class="top-actions"><span class="local-status"><span class="status-dot"></span>Im Browser gespeichert</span><button class="quiet" id="help-open"><svg><use href="#i-info"/></svg><span>So funktioniert’s</span></button><button class="mobile-inventory quiet" id="inventory-open" aria-expanded="false"><svg><use href="#i-rail"/></svg>Bestand</button></div>
+ </header>
+ <div class="app-shell">
+  <div class="drawer-backdrop" id="drawer-backdrop" hidden></div>
+  <aside class="inventory" id="inventory-panel" aria-label="Dein Gleisbestand">
+   <div class="inventory-heading"><div><span class="eyebrow">DER AUSGANGSPUNKT</span><h2>Dein Gleisbestand<span id="inventory-badge">42</span></h2></div><button class="icon-button drawer-close" id="inventory-close" aria-label="Bestand schließen"><svg><use href="#i-close"/></svg></button></div>
+   <section class="sets-box"><div class="small-heading">Mit einem Set starten <span>+</span></div><p>Ein Klick fügt den ganzen Inhalt hinzu.</p><div class="preset-grid" id="starter-presets"></div><div class="expansion-presets" id="expansion-presets"></div></section>
+   <div class="inventory-tools"><span>Oder einzeln anpassen</span><button id="clear-stock" class="text-button">Leeren</button></div>
+   <div id="inventory-rows"></div>
+   <div class="inventory-footer"><button class="quiet" id="import-stock"><svg><use href="#i-plus"/></svg>Import</button><button class="quiet" id="export-stock"><svg><use href="#i-download"/></svg>Export</button><input id="import-file" type="file" accept="application/json,.json" hidden></div>
+   <button class="example-button" id="example-stock">Beispiel: beide Startsets laden <span>↗</span></button>
+  </aside>
+  <main>
+   <section class="intro"><div><span class="eyebrow">VOM GLEIS ZUR IDEE</span><h1>Dein Bestand.<br><em>Deine nächste Strecke.</em></h1><p>Finde heraus, was in deinen Gleisen steckt.<br class="desktop-break"> Mit berechneter Geometrie und passender Stückliste.</p></div><div class="intro-note"><svg viewBox="0 0 120 75" fill="none" aria-hidden="true"><path d="M25 13h70a24 24 0 0 1 0 48H25a24 24 0 0 1 0-48Z"/><path d="M25 24h70a13 13 0 0 1 0 26H25a13 13 0 0 1 0-26Z"/><path d="m43 61 16-11"/><circle cx="59" cy="50" r="3"/></svg><span>Weniger probieren.<br>Mehr fahren.</span></div></section>
+   <section class="stats-row" aria-label="Bestandsübersicht"><div><span class="stat-number" id="stat-pieces">42</span><span>Gleise im Bestand</span></div><div><span class="stat-number" id="stat-types">7</span><span>verschiedene Gleisarten</span></div><div><span class="stat-number" id="stat-results">—</span><span>passende Strecken</span></div><button class="primary" id="search-button"><svg><use href="#i-search"/></svg>Strecken finden<svg class="arrow"><use href="#i-arrow"/></svg></button></section>
+   <section class="workspace" aria-label="Streckensuche">
+    <div class="workspace-top"><div class="tabs" role="tablist" aria-label="Suchmodus"><button role="tab" aria-selected="true" id="tab-stock" data-mode="stock">Ohne Zukauf<span class="tab-dot"></span></button><button role="tab" aria-selected="false" id="tab-extra" data-mode="extra">Mit Ergänzung</button></div><button class="saved-filter" id="saved-filter" aria-pressed="false"><svg><use href="#i-heart"/></svg><span>Merkliste</span><b id="saved-count">0</b></button></div>
+    <div class="filters"><label class="select-label"><svg><use href="#i-grid"/></svg><select id="family-filter" aria-label="Streckenart"><option value="all">Alle Streckenarten</option><option>Rundstrecken</option><option>Abstellgleise</option><option>Bahnhöfe</option><option>Herstellerpläne</option><option>Rangieren</option><option>Pendelstrecken</option></select></label><details class="area-filter"><summary>Verfügbare Fläche <span>⌄</span></summary><div class="area-popover"><p>Freie Gleisfläche in cm</p><div><label>Breite<input type="number" min="0" max="2000" id="max-width" placeholder="beliebig"></label><span>×</span><label>Tiefe<input type="number" min="0" max="2000" id="max-height" placeholder="beliebig"></label></div><small>Gedrehte Pläne zählen mit. Rand und Zugüberhang zusätzlich einplanen.</small><button id="clear-area" class="text-button">Flächenfilter zurücksetzen</button></div></details><label class="sort-label"><span>Sortieren:</span><select id="sort" aria-label="Sortierung"><option value="play">Spielmöglichkeiten</option><option value="use">Bestand ausnutzen</option><option value="compact">Kleine Fläche zuerst</option><option value="missing">Wenig Zukauf</option></select></label></div>
+    <div class="search-message" id="search-message" role="status" aria-live="polite"><span class="status-dot"></span>Die ersten Strecken werden berechnet …</div>
+    <div id="selected-view" class="selected-view" hidden>
+     <div class="plan-topline"><div><span class="eyebrow" id="selected-family"></span><h2 id="selected-name"></h2></div><button class="icon-button" id="favorite-selected" aria-label="Strecke merken" aria-pressed="false"><svg><use href="#i-heart"/></svg></button></div>
+     <div class="canvas" id="canvas"><div class="canvas-label"><span class="status-dot"></span>Geometrie berechnet</div><div id="large-plan" class="large-plan"></div><div class="canvas-toolbar"><button class="icon-button" id="zoom-out" aria-label="Verkleinern"><svg><use href="#i-minus"/></svg></button><span id="zoom-label">100 %</span><button class="icon-button" id="zoom-in" aria-label="Vergrößern"><svg><use href="#i-plus"/></svg></button><span class="toolbar-divider"></span><button class="icon-button" id="zoom-fit" aria-label="Ganzes Gleisbild anzeigen"><svg><use href="#i-expand"/></svg></button><label class="numbers-toggle"><input type="checkbox" id="track-numbers">Gleisnummern</label></div><div class="canvas-scale" id="canvas-dimensions"></div></div>
+     <div class="plan-bottom"><div class="plan-chips" id="plan-chips"></div><div class="plan-actions"><button class="quiet" id="show-parts"><svg><use href="#i-grid"/></svg>Stückliste</button><button class="quiet export-button" id="export-plan"><svg><use href="#i-download"/></svg>SVG exportieren</button></div></div>
+     <div class="parts-panel" id="parts-panel" hidden></div>
+    </div>
+    <div class="results-heading"><h2>Deine Streckenideen <span id="result-count">0</span></h2><span id="result-scope">Geometrisch berechnete Varianten</span></div>
+    <div class="result-grid" id="results" aria-live="polite"></div><button class="show-more quiet" id="show-more" hidden>Weitere Strecken anzeigen <svg><use href="#i-plus"/></svg></button>
+    <div class="empty-state" id="empty-state" hidden><span class="empty-icon"><svg><use href="#i-rail"/></svg></span><h2 id="empty-title">Noch keine passende Strecke</h2><p id="empty-copy">Ergänze deinen Bestand oder ändere die Filter.</p><button class="primary" id="empty-action">Beispielbestand laden<svg><use href="#i-arrow"/></svg></button></div>
+   </section>
+   <section class="scope-note"><svg><use href="#i-info"/></svg><div><strong>Was bedeutet „mögliche Strecken“?</strong><p>Die Suche variiert Kreise, Ovale, abgerundete Rechtecke und gerade Pendelstrecken. Dazu kommen Ladegleis- und Bahnhofvarianten sowie die rekonstruierten C4-/C5-Aufbauten. Sie prüft Anschlüsse und Stückzahlen innerhalb dieser Familien – sie zählt nicht sämtliche denkbaren Gleisnetze auf.</p><details><summary>Suchumfang & Prüfgrenzen</summary><div class="scope-detail"><p>Pro Oval/Rechteck: R1 oder R2, bis zu vier Geraden je Längsseite und zwei je Querseite. Gleisreihenfolgen mit gleichem Grundriss werden zusammengefasst. Andere Kombinationen von Radien, freie Verzweigungen, Steigungen und Brücken werden nicht durchsucht.</p><label>Maximale Gleisstücke je Plan<select id="max-pieces"><option value="24">24</option><option value="32">32</option><option value="48">48</option><option value="64" selected>64</option></select></label><p>Bis zu 240 Treffer pro Suche. Die Grenzen werden am Ergebnis angezeigt. Prüfung anhand gerundeter Katalogmaße: maximal 0,35 mm Anschlussrest, passende Tangenten und keine ungeplanten Überschneidungen einer nominal 40 mm breiten Bettung außerhalb unmittelbar verbundener Bauteile. Kein physischer Probeaufbau oder fahrzeugspezifischer Lichtraumtest. Die internen Schaltwege der Doppelkreuzungsweiche werden über ihre vier Anschlüsse modelliert.</p><p>Eine Basisstation pro verbundenem Plan. Ohne Basisstation ist eine separate Einspeisung nötig. Zwei getrennte Fahrkreise brauchen je eine eigene Einspeisung. Maße beschreiben nur die Gleisbettung; Weichenhebel, Gehäuse, Rand und Fahrzeuge benötigen gegebenenfalls mehr Platz.</p></div></details></div></section>
+   <footer><span class="footer-brand">Gleiswerk.</span><span>Mehr Möglichkeiten auf deiner Platte.</span><button class="text-button" id="sources-open">Grundlagen & Quellen</button></footer>
+  </main>
+ </div>
+ <dialog id="info-dialog"><button class="icon-button dialog-close" id="info-close" aria-label="Dialog schließen"><svg><use href="#i-close"/></svg></button><div id="info-content"></div></dialog>
+ <div class="toast" id="toast" role="status" aria-live="polite"></div>
+ <noscript><p class="noscript">Bitte JavaScript aktivieren. Die Streckensuche läuft direkt in deinem Browser.</p></noscript>
+</body></html>
