@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
-import {SET_CATALOG,SET_BY_ARTICLE,CATALOG_META} from './dist/sets.mjs';
-import {INITIAL,addInventory,search} from './dist/engine.mjs';
+import {SET_CATALOG,SET_BY_ARTICLE,CATALOG_META} from './web/sets.mjs';
+import {INITIAL,addInventory,search} from './web/engine.mjs';
 // Cross-check against four manufacturer result pages captured on 2026-11-08.
 const expected='29030 29124 29132 29133 29139 29162 29163 29166 29167 29169 29171 29173 29179 29182 29183 29184 29188 29199 29296 29310 29320 29321 29323 29452 29453 29641 29652 29653 29722 29730 29752 29828 29952'.split(' ');
 assert.deepEqual(SET_CATALOG.filter(s=>s.kind==='starter').map(s=>s.article).sort(),expected.sort());
