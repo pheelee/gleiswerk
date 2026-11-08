@@ -1,5 +1,5 @@
 // C-Gleis geometry. Catalog angles/lengths are rounded. Units: mm/radians.
-import {SET_BY_ARTICLE} from './sets.mjs?v=20261108-2';
+import {SET_BY_ARTICLE} from './sets.mjs?v=20261108-3';
 export const CATALOG = [
  ['24172','Gerade','171,7 mm','Geraden'],['24188','Gerade','188,3 mm','Geraden'],['24077','Kurze Gerade','77,5 mm','Geraden'],['24094','Kurze Gerade','94,2 mm','Geraden'],['basis','Basisstation','188,3 mm','Geraden'],
  ['24130','Bogen R1','360 mm · 30°','Bögen'],['24230','Bogen R2','437,5 mm · 30°','Bögen'],['24224','Gegenbogen','437,5 mm · 24,3°','Bögen'],

@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {INITIAL,START,PACKS,addInventory,canonicalPart,loading,singleLoading,passing,curvedStation,c4,c5,doubleOval,oval,validate,assignBases,summarize,search} from './dist/engine.mjs';
+import {INITIAL,START,PACKS,addInventory,canonicalPart,loading,singleLoading,passing,curvedStation,c4,c5,doubleOval,oval,validate,assignBases,summarize,search} from './web/engine.mjs';
 const twoStarts=Object.fromEntries(Object.keys(INITIAL).map(id=>[id,(START[id]||0)*2]));
 for(const f of [loading,()=>loading([],true),singleLoading,passing,curvedStation,c4,()=>c4(false),c5,doubleOval,()=>oval(['24172','24188'])]){
  const p=f(),v=validate(p);assert.equal(v.ok,true,`${p.name}: ${JSON.stringify(v)}`);

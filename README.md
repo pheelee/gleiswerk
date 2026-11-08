@@ -1,18 +1,18 @@
 # Gleiswerk
 
-German single-page app for a Märklin Start up / C track inventory and a bounded, geometry-checked layout search. Buildless ES modules: `dist/index.html`, `app.mjs`, `engine.mjs`, `sets.mjs`, `catalog-ui.mjs`, and a module worker. No server, account integration, database or AI-generated track geometry. Inventory, favorites and custom set templates are stored locally in the visitor's browser.
+German single-page app for a Märklin Start up / C track inventory and a bounded, geometry-checked layout search. Frontend ES modules live in `web/`. A dependency-free Worker serves the embedded frontend and a narrow, read-only manufacturer catalog API. No database or AI-generated track geometry. Inventory, favorites and custom set templates are stored locally in the visitor's browser.
 
 ## Set catalog, verified 2026-11-08
 
-`dist/sets.mjs` records all 33 H0 starter sets in the official product database under the Start up feature, including retired references. The four result pages were reconciled against the entry list. Seven theme extensions, C1–C5, and the white 20124 extension bring the catalog to 46 entries. Each entry has its own factual bill of track components, source URL, optional manual URL and date. No inventory is inferred just from the product name: 29652 and 29653 have different quantities, 29166/29167 have a right turnout without a separate countercurve, and the 29952 loading ramp is not counted as a buffer stop. Manuals supply the explicit bills for 29133, 29199, 29641 and 29730 when the online description omits them.
+`web/sets.mjs` records all 33 H0 starter sets in the official product database under the Start up feature, including retired references. The four result pages were reconciled against the entry list. Seven theme extensions, C1–C5, and the white 20124 extension bring the catalog to 46 entries. Each entry has its own factual bill of track components, source URL, optional manual URL and date. No inventory is inferred just from the product name: 29652 and 29653 have different quantities, 29166/29167 have a right turnout without a separate countercurve, and the 29952 loading ramp is not counted as a buffer stop. Manuals supply the explicit bills for 29133, 29199, 29641 and 29730 when the online description omits them.
 
-This is a dated catalog snapshot, not automatic monitoring or a claim to every unlisted international special edition. Visitors can create their own local templates. Search accepts names, article numbers, and dealer-style leading zeros. Set quantity applies atomically; additions over 200 pieces per component are rejected without altering the inventory. Own templates are explicitly distinguished from manufacturer-derived entries.
+The shipped baseline is a dated snapshot. The in-app “Jetzt aktualisieren” button discovers current and archived entries from the official manufacturer lists, then checks explicit track quantities on each product page. It does not claim every unlisted international special edition. Visitors can create their own local templates. Search accepts names, article numbers, and dealer-style leading zeros. Set quantity applies atomically; additions over 200 pieces per component are rejected without altering the inventory. Own templates are explicitly distinguished from manufacturer-derived entries.
 
 New visitors start with an empty inventory. Existing `gleiswerk.inventory.v1` records are preserved. The optional demonstration loads the generic 29133 starter plus C2, not the original user's two packs. Start up 20xxx track numbers are canonicalized to geometrically equivalent 24xxx numbers; colored/transparent C track is pooled by geometry. Europa-Park height, pillars and rolling stock are outside the 2D track model.
 
 ## Run
 
-Serve `dist/` over HTTP; module workers do not run from file://. In the managed environment, use the approved Sites preview only when its browser tool is available. The hosting manifest deploys `dist/` directly.
+Run `node scripts/build.mjs`. The deterministic build embeds `web/` assets, the baseline and its reviewed document fingerprints into `dist/server/index.js`; the deployment archive contains that module and `.openai/hosting.json`. In the managed environment, use the approved Sites preview only when its browser tool is available. A plain static server can show the frontend, but online refresh requires the Worker API.
 
 ## Search contract
 
@@ -32,3 +32,11 @@ Serve `dist/` over HTTP; module workers do not run from file://. In the managed 
 `node test-ui.mjs` is a DOM integration test using LinkeDOM from the execution workspace. It exercises empty first visit, catalog search, leading zeros, archive filters, multi-set quantities, custom templates, parts, favorites, imports with aliases and SVG/JSON exports. `node test-ui.mjs --legacy` checks preservation of an existing v1 inventory. These do not claim visual browser QA.
 
 Sources and detailed scope are available in the app. C4/C5 are reconstructed from the Märklin booklet at https://www.jrline.sk/Images/64/MA24905.pdf (PDF page 37 / printed page 12), and adjusted to use the pooled starter-set inventory.
+
+## Online catalog refresh
+
+`server/index.mjs` fetches only fixed paths on `www.marklin.com`; visitor cookies and authorization headers are never forwarded. Product lists are paginated and checked for complete, consistent counts. HTML and quantities are validated conservatively; unsupported component types or ambiguous lists are flagged for review, not partially imported. Previously reviewed manual-only records retain their original verification date when their product description and manual links have not changed.
+
+The browser saves a validated catalog separately under `gleiswerk.catalog.v1`, with a change report and one previous snapshot for undo. New/changed entries affect future additions only. Existing inventory, custom sets and favorites are untouched. Cancellation, incomplete discovery, total product failure or storage failure retain the active catalog. Partial product failures preserve the affected entries and are listed clearly in the report. No shared server catalog storage or background scheduling is used.
+
+`node test-update-server.mjs` checks the actual 46 manufacturer HTML fixtures, conservative extraction and the API boundary. `node test-update-client.mjs` checks refresh, persistence, rollback, cancellation, partial and complete failures and storage failures. DOM integration also exercises the update controls and updated preset quantities. Manufacturer fixtures and the DOM test dependency reside in the execution workspace and are not shipped. Visual browser QA is separate from these checks.
