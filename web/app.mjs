@@ -1,3 +1,4 @@
+import {storage} from './storage.mjs?v=20261108-4';
 import {CATALOG,PACKS,INITIAL,EXAMPLE,canonicalPart,addInventory,signature} from './engine.mjs?v=20261108-4';
 import {getCatalog,getCatalogMeta} from './catalog-store.mjs?v=20261108-4';
 import {setupSetCatalog} from './catalog-ui.mjs?v=20261108-4';
@@ -8,9 +9,9 @@ const icon=name=>`<svg aria-hidden="true"><use href="#i-${name}"/></svg>`;
 const fmt=n=>new Intl.NumberFormat('de-CH',{maximumFractionDigits:1}).format(n);
 let inventory={...INITIAL},favorites=new Set(),results=[],lastSearch=null,selected=null,mode='stock',worker=null,debounce=null,pageLimit=12,zoom=1,pan={x:0,y:0},drag=null,savedOnly=false,partsOpen=false,toastTimer;
 let storageAvailable=true;
-try{const raw=localStorage.getItem(storageKey);if(raw)inventory=normalize(JSON.parse(raw));const saved=JSON.parse(localStorage.getItem(savedKey)||'[]');if(Array.isArray(saved))favorites=new Set(saved.filter(x=>typeof x==='string').slice(0,500));}catch{storageAvailable=false;}
+try{const raw=storage.getItem(storageKey);if(raw)inventory=normalize(JSON.parse(raw));const saved=JSON.parse(storage.getItem(savedKey)||'[]');if(Array.isArray(saved))favorites=new Set(saved.filter(x=>typeof x==='string').slice(0,500));}catch{storageAvailable=false;}
 function normalize(raw){const obj=raw?.inventory??raw;if(!obj||typeof obj!=='object'||Array.isArray(obj))throw new Error('Die Datei enthält keinen Gleisbestand.');const out=Object.fromEntries(CATALOG.map(([id])=>[id,0]));let recognized=0;for(const [article,n]of Object.entries(obj)){const id=canonicalPart(article);if(!Object.hasOwn(out,id))throw new Error(`Gleisart „${article}“ wird noch nicht unterstützt.`);if(typeof n!=='number'||!Number.isFinite(n)||n<0||!Number.isInteger(n)||n>200||(out[id]||0)+n>200)throw new Error(`Ungültige Stückzahl bei ${article}. Erlaubt sind ganze Zahlen von 0 bis 200.`);out[id]+=n;recognized++;}if(!recognized)throw new Error('Die Datei enthält keine unterstützten Gleisarten.');return out;}
-function persist(){try{localStorage.setItem(storageKey,JSON.stringify(inventory));localStorage.setItem(savedKey,JSON.stringify([...favorites].slice(0,500)));}catch{storageAvailable=false;}if(!storageAvailable){$('.local-status').textContent='Speicherung nicht verfügbar';}}
+function persist(){try{storage.setItem(storageKey,JSON.stringify(inventory));storage.setItem(savedKey,JSON.stringify([...favorites].slice(0,500)));}catch{storageAvailable=false;}if(!storageAvailable){$('.local-status').textContent='Speicherung nicht verfügbar';}}
 function toast(s){clearTimeout(toastTimer);$('#toast').textContent=s;$('#toast').classList.add('visible');toastTimer=setTimeout(()=>$('#toast').classList.remove('visible'),3200);}
 function trackIcon(id){let d='M4 12h22';if(['24130','24230','24224'].includes(id))d='M5 25A20 20 0 0 1 25 5';if(['24611','24612'].includes(id))d='M3 21h24M3 21c12 0 10-12 24-12';if(['24671','24672'].includes(id))d='M4 26A22 22 0 0 1 26 4M4 26C7 14 20 14 26 12';if(id==='24620')d='M3 10h24M4 23 26 4';if(id==='24977')d='M3 16h21m0-8v16';if(id==='basis')d='M3 18h24M10 18V9h10v9';return `<svg viewBox="0 0 30 30" aria-hidden="true"><path d="${d}"/></svg>`;}
 function renderInventory(){

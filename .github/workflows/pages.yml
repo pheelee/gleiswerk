@@ -4,6 +4,9 @@ on:
   push:
     branches: [main, feature/catalog-refresh]
   workflow_dispatch:
+  workflow_run:
+    workflows: [Build PR preview]
+    types: [completed]
   schedule:
     - cron: '17 3 * * *'
 
@@ -16,13 +19,17 @@ permissions:
 
 jobs:
   build:
-    if: github.ref_name == github.event.repository.default_branch
+    if: (github.event_name != 'workflow_run' && github.ref_name == github.event.repository.default_branch) || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
     permissions:
       contents: read
       pages: write
+      actions: read
+      pull-requests: read
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -36,6 +43,7 @@ jobs:
           restore-keys: catalog-
       - name: Check current manufacturer catalog
         id: catalog
+        if: github.event_name != 'workflow_run'
         continue-on-error: true
         run: npm run catalog:update
       - name: Keep previous catalog when manufacturer is unavailable
@@ -47,6 +55,10 @@ jobs:
           path: data/catalog.json
           key: catalog-${{ github.run_id }}
       - run: npm run build
+      - name: Assemble live PR previews
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: node scripts/assemble-previews.mjs
       - uses: actions/configure-pages@v5
         with:
           enablement: true
