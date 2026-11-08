@@ -1,0 +1,6 @@
+import {readFile} from 'node:fs/promises';
+export const fixture=JSON.parse(await readFile(new URL('./fixtures/manufacturer.json',import.meta.url),'utf8'));
+const escape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+export function productHTML(article){const doc=fixture.products[article];return `<h1>${escape(doc.title)}</h1><span>Article No. ${article}</span><p itemprop="description">${escape(doc.description)}</p>${doc.manuals.map(url=>`<a href="${escape(url)}">Manual</a>`).join('')}${doc.retired?'Article not produced anymore':''}`;}
+export function listingHTML(kind,page){const data=fixture.listings[kind+':'+page];if(!data)throw Error('Unknown fixture list.');return `<h1>Search results (${data.total})</h1>${data.entries.map(e=>`<a href="/products/details/article/${e.article}">${escape(e.title||e.article)}</a>`).join('')}`;}
+export async function manufacturerHTML(url){const u=new URL(url),article=u.pathname.match(/\/article\/(\d+)/)?.[1],page=Number(u.searchParams.get('tx_torrpdb_search[page]')),sub=u.searchParams.get('tx_torrpdb_search[subgroupchoice]');return new Response(article?productHTML(article):listingHTML(sub==='0'?'track':sub==='16'?'starter':'extension',page),{headers:{'content-type':'text/html'}});}

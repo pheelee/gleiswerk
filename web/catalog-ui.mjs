@@ -1,6 +1,6 @@
-import {getCatalog,getCatalogMeta,subscribeCatalog,undoCatalog} from './catalog-store.mjs?v=20261108-3';
-import {refreshCatalog} from './catalog-sync.mjs?v=20261108-3';
-import {CATALOG,addInventory,INITIAL} from './engine.mjs?v=20261108-3';
+import {getCatalog,getCatalogMeta,subscribeCatalog,undoCatalog} from './catalog-store.mjs?v=20261108-4';
+import {refreshCatalog} from './catalog-sync.mjs?v=20261108-4';
+import {CATALOG,addInventory,INITIAL} from './engine.mjs?v=20261108-4';
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const icon=n=>`<svg aria-hidden="true"><use href="#i-${n}"/></svg>`;
 const kinds={starter:'Startpackung',track:'Gleis-Ergänzung',extension:'Themen-Ergänzung',custom:'Eigene Vorlage'};
@@ -26,10 +26,10 @@ export function setupSetCatalog({onAdd,onMessage,onCatalogChange=()=>{}}){
  function reportSummary(r){return `${r.added} neu · ${r.changed} mit geändertem Gleisinhalt · ${r.confirmed} Gleislisten bestätigt · ${r.retained} bisherige Abgleiche beibehalten${r.review?' · '+r.review+' zur Prüfung':''}${r.errors?' · '+r.errors+' nicht erreichbar':''}`;}
  function renderUpdate(){
   const meta=getCatalogMeta(),r=meta.report;
-  $('#catalog-version').textContent=meta.lastRefresh?'Letzter Online-Abgleich: '+date(meta.lastRefresh)+(meta.partial?' · teilweise':''):'Mitgelieferter Stand: '+date(meta.checked);
+  $('#catalog-version').textContent=meta.lastRefresh?'Herstellerstand des geladenen Katalogs: '+date(meta.lastRefresh)+(meta.partial?' · teilweise':''):'Mitgelieferter Stand: '+date(meta.checked);
   $('#catalog-update-start').disabled=!!controller;$('#catalog-update-cancel').hidden=!controller;$('#catalog-update-undo').hidden=!meta.canUndo;$('#catalog-update-undo').disabled=!!controller;
   $('#catalog-update-report').hidden=!r;
-  if(!controller)$('#catalog-update-status').textContent=runMessage||(r?reportSummary(r):'Herstellerlisten und Gleisinhalte neu laden. Dein Bestand und eigene Vorlagen bleiben erhalten.');
+  if(!controller)$('#catalog-update-status').textContent=runMessage||(r?reportSummary(r):'Letzten veröffentlichten Katalog laden. Herstellerabgleich täglich und manuell über GitHub Actions. Dein Bestand bleibt erhalten.');
   if(r){$('#catalog-update-report-title').textContent='Abgleichbericht · '+date(r.checkedAt);const priority={added:0,changed:1,review:2,error:3,retained:4,confirmed:5};
    const rows=r.records.filter(x=>x.state!=='confirmed').sort((a,b)=>priority[a.state]-priority[b.state]||a.article.localeCompare(b.article));
    const labels={added:'Neu',changed:'Gleisinhalt geändert',review:'Prüfung nötig',error:'Nicht erreichbar',retained:'Bisheriger Abgleich beibehalten'};
@@ -38,7 +38,7 @@ export function setupSetCatalog({onAdd,onMessage,onCatalogChange=()=>{}}){
  }
  $('#catalog-update-start').addEventListener('click',async()=>{
   if(controller)return;controller=new AbortController();runMessage='';renderUpdate();$('#catalog-update-progress').hidden=false;$('#catalog-update-progress').removeAttribute('value');
-  try{const report=await refreshCatalog({signal:controller.signal,onProgress:p=>{const progress=$('#catalog-update-progress');if(p.total){progress.max=p.total;progress.value=p.done;}else progress.removeAttribute('value');$('#catalog-update-status').textContent=p.message+(p.total?` ${p.done} / ${p.total}`:'');}});runMessage=reportSummary(report);if(report.review||report.errors||report.changed||report.added)$('#catalog-update-report').open=true;onMessage(report.errors||report.review?'Katalog teilweise aktualisiert. Details im Abgleichbericht.':'Herstellerkatalog abgeglichen und in diesem Browser gespeichert.');}
+  try{const report=await refreshCatalog({signal:controller.signal,onProgress:p=>{const progress=$('#catalog-update-progress');if(p.total){progress.max=p.total;progress.value=p.done;}else progress.removeAttribute('value');$('#catalog-update-status').textContent=p.message+(p.total?` ${p.done} / ${p.total}`:'');}});runMessage=reportSummary(report);if(report.review||report.errors||report.changed||report.added)$('#catalog-update-report').open=true;onMessage(report.errors||report.review?'Katalog teilweise aktualisiert. Details im Abgleichbericht.':'Veröffentlichten Katalog in diesem Browser gespeichert.');}
   catch(error){runMessage=error.name==='AbortError'?'Aktualisierung abgebrochen. Der bisherige Katalog bleibt aktiv.':error.message;onMessage(runMessage);}
   finally{controller=null;$('#catalog-update-progress').hidden=true;render();}
  });
