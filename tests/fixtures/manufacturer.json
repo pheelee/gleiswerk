@@ -1,0 +1,861 @@
+{
+  "products": {
+    "20124": {
+      "title": "Märklin Start up – \"Snow-Covered Track\" C Track Extension Set",
+      "description": "Contents: 2 each straight track 171.7 mm / 6-3/4\", 2 each straight track 188.3 mm / 7-13/32\" 1 each curved track (turnout curve), 1 left turnout, 1 track bumper. All of the track in white with a glitter effect. Setup instructions are included.",
+      "manuals": [],
+      "retired": false
+    },
+    "24900": {
+      "title": "Märklin Start up - C1 C Track Extension Set",
+      "description": "Contents: 2 no. 24172 straight track, 1 no. 24224 curved track, 1 no. 24611 left turnout, 1 no. 24977 track bumper, and instructions.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/3c/ae/3caefc3646d2c5e70d599c84fa7abb8f1768213628.pdf",
+        "https://static.maerklin.de/damcontent/58/dc/58dcee4474d3a647ec08038e8f7fa2d81704981330.pdf"
+      ],
+      "retired": false
+    },
+    "24902": {
+      "title": "Märklin Start up - C Track C2 Extension Set",
+      "description": "Contents: 3 no. 24188 straight track, 5 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24611 turnout, 1 no. 24612 turnout and instructions.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/96/42/9642db5ccc95c07e2eb774535209693d1704981376.pdf",
+        "https://static.maerklin.de/damcontent/af/0c/af0cf794bff86230b19e7f748f6f07641779254556.pdf"
+      ],
+      "retired": false
+    },
+    "24903": {
+      "title": "Märklin Start up - C Track C3 Track Extension Set",
+      "description": "Contents: 7 no. 24188 straight track, 7 no. 24172 straight track, 2 no. 24130 curved track, 1 no. 24671 curved turnout, 1 no. 24672 curved turnout and instructions.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/72/eb/72eb2472fe07a3a36131e394d83abb701783412066.pdf",
+        "https://static.maerklin.de/damcontent/82/d8/82d80665dc45addaaa8a3ebfc65abce11704981419.pdf"
+      ],
+      "retired": false
+    },
+    "24904": {
+      "title": "Märklin Start up - C Track C4 Track Extension Set",
+      "description": "Contents: 4 no. 24188 straight track, 4 no. 24172 straight track, 2 no. 24077 straight track, 2 no. 24130 curved track, 6 no. 24230 curved track, 1 no. 24671 curved turnout, 1 no. 24672 curved turnout and instructions.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/1f/b3/1fb3a520f921496a245462371752fc551704981451.pdf",
+        "https://static.maerklin.de/damcontent/df/d4/dfd4770628d2c5b52ce760a0a26862701768213606.pdf"
+      ],
+      "retired": false
+    },
+    "24905": {
+      "title": "Märklin Start up - C Track C5 Track Extension Set",
+      "description": "Contents: 7 no. 24188 straight track, 7 no. 24172 straight track, 2 no. 24094 straight track, 1 no. 24224 curved track, 1 no. 24611 turnout, 1 no. 24612 turnout, 1 no. 24620 double slip switch, 4 no. 24977 track ends with track bumpers and instructions.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/57/8a/578a1667e3e365209c34b3550736867b1704981482.pdf",
+        "https://static.maerklin.de/damcontent/8e/de/8ede11513287707ccff8253b64e212731769098456.pdf"
+      ],
+      "retired": false
+    },
+    "29030": {
+      "title": "Märklin Start up - “Europa-Park” Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder. One axle is powered, and traction tires are fitted. Coupler hooks are fitted. All cars are fitted with Relex couplers. Length of the train 45.3 cm / 17-7/8\". The starter set also contains building blocks for constructing an elevated railroad. The building blocks can be used to build elevated railroad pillars of different heights to create uphill or downhill gradients. The tracks are supported on adapter building blocks, which are also included. Contents: 18 curved tracks R1, 7 straight tracks 188.3 mm / 7-7/16\", and 1 base station. All tracks are transparent. 56 building blocks for constructing the elevated railroad pillars and 12 adapter building blocks for securing the track. A switched mode power pack and a handy wireless infrared controller – the “Märklin Power Control Stick.” 2x AAA Batteries are included.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/1d/16/1d16b6c584bda3d8c25d08a3eb7f31331784806874.pdf"
+      ],
+      "retired": false
+    },
+    "29124": {
+      "title": "Märklin Start up - \"Christmas\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder and front light. 1 axle powered. Traction tires. The locomotive has coupler hooks. All the cars include RELEX couplers. Train length approximately 33.3 cm / 13-1/8\". Contents: 12 each R1 curved track, 2 each 171.2 mm / 6-3/4\" straight track, 1 each 188.3 / 7-13/32\" straight track, and 1 base station. All the track is white with a glitter effect. There is a cut-out sheet of \"Christmas Gifts\". The set has a switched mode power pack and a wireless, easy to use infrared controller, the Märklin Power Control Stick. 2 AAA batteries are included with the set. This set can be expanded with the 20124 \"Snow-Covered Track\" C Track extension set.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/31/71/3171199cc72f513250cfc8e68c06f38f1776860027.pdf",
+        "https://static.maerklin.de/damcontent/f4/68/f46861381c9e8cd39e3541152ced8a741728390358.pdf"
+      ],
+      "retired": false
+    },
+    "29132": {
+      "title": "Märklin Start up - \"HARIBO\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder. 1 axle powered. Traction tires. The locomotive has coupler hooks. Both cars have RELEX couplers. Train length approximately 33.8 cm / 13-5/16\". Contents: 12 no. 24130 curved track, 2 no. 24172 straight track, 1 no. 24188 straight track, and 1 base station. A switched mode power pack and a wireless infrared controller are included. 2 each AAA batteries are included. This set can be expanded with the C Track extension sets and with the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/0b/1b/0b1b137e7b80c8165cda57e638ab63b41728390314.pdf",
+        "https://static.maerklin.de/damcontent/fd/83/fd830a06a2273a59c6482b9cbece3d241755750541.pdf"
+      ],
+      "retired": true
+    },
+    "29133": {
+      "title": "Märklin Start up - \"My Start with Märklin\" Digital Starter Set",
+      "description": "The childlike tank locomotive is powerful and can be controlled precisely with different speeds thanks to the Märklin Power Control Stick. A dump car that can be tipped in both directions and the bulldozer as a load for the low side car provide additional play fun. Included in the set: In addition to the train and its load, this set has the Märklin Power Control Stick designed for children, the necessary batteries, and all of the track for a track setup of 112 x 76 cm / 45\" x 30\".",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/68/a3/68a31a427770f9ca34c1a48d5e0e85491728390459.pdf",
+        "https://static.maerklin.de/damcontent/b5/ee/b5ee7d04cb1770e72faf1c314bb73fb21773225953.pdf"
+      ],
+      "retired": false
+    },
+    "29139": {
+      "title": "Märklin Start up - Startpackung \"Güterzug\". 230 Volt",
+      "description": "Modell: Lokomotive mit Digital-Decoder und Spezialmotor. 1 Achse angetrieben, Haftreifen. Kupplungshaken. Beide Wagen mit Relex-Kupplungen. Länge des Zuges 33,8 cm. Inhalt: 12 gebogene Gleise 24130, 2 gerade Gleise 24172, 1 gerades Gleis 24188 und 1 Basisstation. 1 Schaltnetzteil 230 V/18 VA und ein kabelloses Infrarot-Steuergerät. Erweiterungsmöglichkeiten mit den C-Gleis-Ergänzungspackungen und dem gesamten C-Gleis-Programm.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/8a/f5/8af520383ef82b354401afdba4e592301489762004.pdf"
+      ],
+      "retired": true
+    },
+    "29162": {
+      "title": "\"My Start with Märklin\" Starter Set. 230 Volts.",
+      "description": "Model: The locomotive has a digital decoder and a special motor. 1 axle powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The locomotive has coupler hooks. The low side car and the dump car each have Relex couplers. Train length 34.2 cm / 13-1/2\". Contents: 12 no. 24130 curved track, 2 no. 24172 straight track, 1 no. 24188 straight track, 1 base station, 1 switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/94/f5/94f5bc7c5ee0c84194ae9d003a83ec3c1434542586.pdf",
+        "https://static.maerklin.de/damcontent/d8/42/d842e92583dec438c1eb03dfa80c26e91434541843.pdf"
+      ],
+      "retired": true
+    },
+    "29163": {
+      "title": "\"My Start with Märklin\" Starter Set. 230 Volts.",
+      "description": "Model: The locomotive comes with a digital decoder. 1 axle powered. Traction tires. The locomotive has coupler hooks. 1 each gondola and refrigerator car. The cars come with Relex couplers. Train length 33.8 cm / 13-5/16\". Contents: 12 no. 20130 curved track, 2 no. 20172 straight track, 1 no. 20188 straight track, 1 base station, a 230 volt / 36 VA plug-in wall transformer, and a wireless infrared controller. This set can be expanded with the C Track extension sets and the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/52/7c/527c1aa4cf933e8a07fbfaaedf0ccd931434542177.pdf",
+        "https://static.maerklin.de/damcontent/ee/8a/ee8aa36ab695256976e0c53097fe29501434542135.pdf"
+      ],
+      "retired": true
+    },
+    "29166": {
+      "title": "\"Freight Train with a Class 74\" Starter Set. 230 Volts",
+      "description": "Model: The locomotive has a digital decoder and a special motor with a flywheel. 3 axles powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The locomotive has many separately applied details. The low side car and the tank car each have Relex couplers. Train length 34.9 cm / 13-3/4\". Contents: 12 no. 24130 curved track, 3 no. 24172 straight track, 1 no. 24188 straight track, 1 no. 24612 right turnout, 1 no. 24977 track bumper, 1 base station, 1 switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 turnout mechanism can be installed in the turnout.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/40/17/40179b31133d876175df4089353bacf01434542365.pdf",
+        "https://static.maerklin.de/damcontent/43/c1/43c1fcf01e0d49dbd13f31360993e5bb1434542347.pdf"
+      ],
+      "retired": true
+    },
+    "29167": {
+      "title": "\"Freight Train with a Class 96\" Starter Set. 230 Volts.",
+      "description": "Model: The locomotive has a digital decoder and a special motor with a flywheel. 3 axles powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The locomotive has many separately applied details. The low side car, the gondola, and the tank each have Relex couplers. Train length 47.2 cm / 18-9/16\". Contents: 12 no. 24130 curved track, 3 no. 24172 straight track, 1 no. 24188 straight track, 1 no. 24612 right turnout, 1 no. 24977 track bumper, 1 base station, 1 each 230 volt / 18 VA switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/8c/e1/8ce188c77d1508e91da2e262505670691434542489.pdf",
+        "https://static.maerklin.de/damcontent/fc/fd/fcfd13333aca04233e6d9767b9e427091434541909.pdf"
+      ],
+      "retired": true
+    },
+    "29169": {
+      "title": "\"Freight Train with a Class 59\" Starter Set. 230 Volts.",
+      "description": "Model: The locomotive has a digital decoder and a special motor with a flywheel. 3 axles powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The locomotive has many separately applied details. The low side car, the gondola, and the tank car each have Relex couplers. Train length 47.2 cm / 18-9/16\". Contents: 12 no. 24130 curved track, 2 no. 24172 straight track, 1 no. 24188 straight track, and 1 base station. 1 each switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/48/28/48282b0cbde53ba7f317435e12a4cec01434542517.pdf"
+      ],
+      "retired": true
+    },
+    "29171": {
+      "title": "\"DSB\" Starter Set. 230 Volts.",
+      "description": "Model: The locomotive has a digital decoder. 1 axle powered. Traction tires. The locomotive has coupler hooks front and rear. The low side car, the gondola, and the tank car each have Relex couplers. Train length 45.3 cm / 17-7/8\". Contents: 12 no. 24130 curved track, 2 no. 24172 straight track, 1 no. 24188 straight track, and 1 base station. 1 each 230 volt / 18 VA switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/dd/bd/ddbd37acdd8bbb73104429c203ec47041434542174.pdf"
+      ],
+      "retired": true
+    },
+    "29173": {
+      "title": "\"My Start with Märklin\" Starter Set",
+      "description": "Model: The tank locomotive has a digital decoder and a special motor. 1 axle powered. Traction tires. The dual headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The locomotive has coupler hooks. This set has 1 low side car with a load and 1 dump car, each with Relex couplers. Train length 34.0 cm / 13-3/8\". Contents: 12 no. 24130 curved track, 2 no. 24172 straight track, 1 no. 24188 straight track, 1 base station, 1 switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/29/84/2984dc9a401cabca83ee819636e52bad1551853343.pdf",
+        "https://static.maerklin.de/damcontent/b6/d7/b6d7c73fa119bc4137672ac59df0c5751434542344.pdf"
+      ],
+      "retired": true
+    },
+    "29179": {
+      "title": "Märklin Start up - \"Jim Button\" Starter Set",
+      "description": "Model: The \"Emma\" locomotive has an mfx digital decoder and two sound functions that vary with the speed. It also has dual headlights that will work in conventional operation and that can be controlled digitally. Warm white LEDs are used for the lighting. The locomotive frame and body are made of plastic. 1 axle powered. Traction tires. The locomotive has coupler hooks. The \"Emma\" locomotive has a removable roof so that the toy figures Jim and Lukas can ride along in the locomotive cab. The \"Emma\" locomotive comes in an enlarged version (not 1? scale) for running on H0 C Track. Jim, Lukas, and the small locomotive \"Molly\" are included as toy figures and provide great play value. The dimensions for the Emma locomotive are: Length over the buffers 100 mm / 3-15/16\", width 60 mm / 2-3/8\", and height 105 mm / 4-1/8\". Toy figure Jim: height approximately 36 mm / 1-7/16\". Toy figure Lukas: height approximately 45 mm / 1-3/4\". Molly locomotive: height approximately 42 mm / 1-5/8\". Contents: 12 no. 24130 curved track, 2 no. 24172 straight track, 1 no. 24188 straight track, 1 base station, 1 switched mode power pack and a wireless infrared controller. 2 each AAA batteries are included with the set. This set can be expanded with the C Track extension set and with the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/12/eb/12eb4bf7a52c1ff1939fead03ce5ef0c1569316586.pdf"
+      ],
+      "retired": true
+    },
+    "29182": {
+      "title": "\"Construction Site\" Starter Set. 230 Volts.",
+      "description": "Model: The locomotive has a digital decoder and a special motor. 1 axle powered. Traction tires. The triple headlights change over with the direction of travel and can be controlled digitally. There is a warning light on the roof of the engineer's cab. The crane car has a cab that can be turned, a boom that can be raised and lowered, and a hand crank for the crane line. The crane tender car has a boom support. The low side car comes with a metal model of a power shovel. All of the cars have Relex couplers. Train length 48 cm / 18-7/8\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, and 1 no. 24612 right turnout and 1 no. 24611 left turnout. A switched mode power pack and a wireless infrared controller are included. This set can be expanded with the C Track extension sets and the entire C Track program. The 74492 electric turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/be/d7/bed75cea0294279eaadae71aba6a4ed21434542325.pdf",
+        "https://static.maerklin.de/damcontent/ec/74/ec744119ca49038e3b96a8a3a67020231434542342.pdf"
+      ],
+      "retired": true
+    },
+    "29183": {
+      "title": "Märklin Start up - \"Construction Site\" Starter Set. 230 Volts",
+      "description": "Model: The locomotive has a digital decoder and a special motor. 1 axle powered. Traction tires. The locomotive has triple headlights that change with the direction of travel, will work in conventional operation, and can be controlled digitally. The crane car has a cab that can be rotated, a boom that can be moved, and a hand crank for the crane line. The boom car has a support for the boom. The low side car has a metal model of a front end loader. All of the cars have Relex couplers. Train length 48 cm / 18-7/8\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24612 right turnout and 1 no. 24611 left turnout. A switched mode power pack and a wireless infrared controller are included. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/24/91/24910ca62dbac1692a041dbb0ce10c671434542181.pdf",
+        "https://static.maerklin.de/damcontent/2c/ef/2cef644901c16bfeda7eb30be02c3f7c1434542006.pdf"
+      ],
+      "retired": true
+    },
+    "29184": {
+      "title": "Märklin Start up - \"Construction Site\" Starter Set",
+      "description": "Model: The locomotive has a digital decoder and a special motor. 1 axle powered. Traction tires. The locomotive has triple headlights that change over with the direction of travel, will work in conventional operation, and can be controlled digitally. There is a blinking light on the cab roof. Rolls with catenary wire and a construction vehicle constructed of metal are included with the set to load the freight cars. All of the cars have Relex couplers. Train length 49.9 cm / 19-5/8\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24611 left turnout and 1 no. 24612 right turnout. A switched mode power pack and a wireless infrared controller are included. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/08/1f/081f7a3878ed6adebbc672ee29b90d811553158290.pdf"
+      ],
+      "retired": true
+    },
+    "29188": {
+      "title": "Märklin Start up - \"Construction Site\" Starter Set.",
+      "description": "Model: The locomotive has an mfx digital decoder. 1 axle powered. Traction tires. The locomotive has triple headlights that change over with the direction of travel, will work in conventional operation, and can be controlled digitally. A sturdy wheel loader and a set of barriers and signs are included as a load for the freight cars. All the cars have Relex couplers. Train length approximately 45.3 cm / 17-13/16\". Contents: 12 no. 24130 curved track, 4 no. 24172 straight track, 1 no. 24188 straight track, 1 base station, , 1 no. 24224 curved track, 1 no. 24611 left turnout, and 1 no. 24977 track bumper. A switched mode power pack and a wireless, easy to hold infrared controller, the Märklin Power Control Stick, are included. 2 each AAA batteries are also included. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/48/51/4851cdf74f66978d54c197d08bc112511728390412.pdf",
+        "https://static.maerklin.de/damcontent/6c/4d/6c4d4f9a99e088cbb22edaef1bee2c0f1781083937.pdf"
+      ],
+      "retired": false
+    },
+    "29199": {
+      "title": "Märklin Start up - \"Jim Button and the Wild 13\" Starter Set",
+      "description": "The big play set all about the adventures of Jim Button, Lukas, and their two locomotives Emma and Molly. Equipped with light and sound, the four adventurers are going on a joint adventure trip into the unknown. With the Märklin Power Control Stick, everything works at the press of a button. Get on board with Jim and Lukas and the exciting trip begins... Contained in the set: Emma steam locomotive with Jim Button, Lukas, and Molly as toy figures, a complete track setup of 112 x 76 cm / 45\" x 30\", a switched mode power pack, and the Märklin Power Control Stick.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/c0/1e/c01e184c12a52c859b0acf6c68db77f21595497148.pdf"
+      ],
+      "retired": true
+    },
+    "29296": {
+      "title": "Märklin Start up - \"Communal Service\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder. 1 axle powered, traction tires. Triple headlights change over with the direction of travel, will work in conventional operation and can be controlled digitally. The locomotive has coupler hooks. The low side car is loaded with a communal vehicle. All the cars have Relex couplers. Train length 47 cm / 18-1/2\". Contents: 12 no. 24130 curved track, 4 no. 24172 straight track, 1 no. 24188 straight track, 1 base station, 1 no. 24224 curved track, 1 no. 24611 left turnout, and 1 no. 24977 track bumper. A switched mode power pack and an easy-to-use wireless infrared controller, the Märklin Power Control Stick, are included. 2 each AAA batteries are included. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 electric turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/f3/92/f392740fafd5a40f87814a1d843bec071779255973.pdf"
+      ],
+      "retired": false
+    },
+    "29310": {
+      "title": "\"Forestry\" Starter Set. 230 Volts",
+      "description": "Model: The locomotive has a digital decoder and a special can motor. 1 axle powered. Traction tires. The locomotive has coupler hooks. A sturdy model of a tractor with a trailer, and a harvester with a grabbing arm, manufactured mostly of metal, are included. Also included are logs made of plastic. All of the cars have Relex couplers. Train length 49.8 cm / 19-5/8\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24612 right turnout, and 1 no. 24611 left turnout. 1 switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 electric turnout mechanism can be installed on the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/bc/51/bc51dc590cb9f76edd0e3da62140043a1516028526.pdf"
+      ],
+      "retired": true
+    },
+    "29320": {
+      "title": "\"My ICE Start\" Starter Set. 230 Volts.",
+      "description": "Model: The powered end car has a digital decoder and factory-installed, controllable sound functions. It also has a special motor. 2 axles powered. Traction tires. The headlights will work in conventional operation and can be controlled digitally in the powered end car (always on in the cab control car). The pantographs will work mechanically but are not wired to take power from catenary. Train length 76.5 cm / 30-3/16\". Contents: 12 no. 24130 curved track, 5 no. 24188 straight track, 6 no. 24172 straight track, 1 base station. 1 switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 electric mechanism can be installed on the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/4a/2e/4a2ef3bb761f9006df75d9c60567b83f1434541740.pdf",
+        "https://static.maerklin.de/damcontent/72/c3/72c38910d22e6baf1ee94649a9cb00b11434541748.pdf"
+      ],
+      "retired": true
+    },
+    "29321": {
+      "title": "\"German Federal Railroad Freight Train\" Starter Set. 230 Volts",
+      "description": "Model: The locomotive has a digital decoder and a special motor. 4 axles powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The set has a removable model of a bulldozer. The locomotive and the cars all have Relex couplers. Train length 47.3 cm / 18-5/8“. Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24612 right turnout and 1 no. 24611 left turnout. A switched mode power pack and a wireless infrared controller are included. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 electric turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/89/5f/895f9abddface229024e8f3373003f1c1434542563.pdf",
+        "https://static.maerklin.de/damcontent/b4/73/b47377b00dd05311be22b3362e534bfa1434542003.pdf"
+      ],
+      "retired": true
+    },
+    "29323": {
+      "title": "\"Freight Train\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder and a special motor. 3 axles powered. Traction tires. The triple headlights will work in conventional operation and can be controlled digitally. The locomotive has coupler hooks. The low side car, boxcar, and tank car each have Relex couplers. Train length 45.7 cm / 18\". Contents: 12 no. 24130 curved track, 2 no. 24172 straight track, 1 no. 24188 straight track, 1 base station, 1 switched mode power pack, and a wireless infrared controller. This set can be expanded with the C Track extension sets and with the entire C Track program.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/32/9a/329abc873fc51264104ff1e3d404cb2b1489757292.pdf"
+      ],
+      "retired": true
+    },
+    "29452": {
+      "title": "Märklin Start up - \"Container Train\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder and factory-installed sound functions that can be controlled. 1 axle powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. There is a blinking light on the cab roof. The locomotive has coupler hooks. The 3 container transport cars are loaded with different types of containers (20 ft. container, 40 ft. container, and 20 ft. tank container). All of the cars have Relex couplers. All of the containers can be removed from the cars and can be opened for loading. Train length 59.2 cm / 23-5/16\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, and 1 no. 24611 left turnout and 1 no. 24612 right turnout. A switched mode power pack and an infrared controller are included. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 electric turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/c8/27/c827b09ae603c2c88e4d84796c7cd2221551853372.pdf"
+      ],
+      "retired": true
+    },
+    "29453": {
+      "title": "Märklin Start up - \"Container Train\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder and a factory-installed sound functions. 1 axle powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. There is a blinking light on the cab roof. The locomotive has coupler hooks. The 3 container flat cars are loaded with different types of containers (20-foot container, 40-foot container, and 20-foot tank container). All of the cars have Relex couplers. All of the containers can be removed from the cars and opened for loading. Train length 59.2 cm / 23-5/16\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24611 left turnout and 1 no 24612 right turnout. A switched mode power pack and a wireless, easy-to-use infrared controller, the Märklin Power Control Stick, are included. 2 each AAA batteries are included with this set. The set can be expanded with the C Track extension sets and the entire C Track program. The 74492 electric mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/90/a0/90a04dc8f33f531096d97bbc6494ea1f1660729200.pdf"
+      ],
+      "retired": true
+    },
+    "29641": {
+      "title": "Märklin Start up - \"Modern Commuter Service\" Starter Set",
+      "description": "This LINT design powered rail car is arriving just like its prototype. Its striking features such as low-level entries and the center buffers are easy to recognize on the model too. Contained in the Set In addition to a generous track set with two turnouts for a passing siding, the entire set will win you over with its easy operation and running controls with the wireless IR controller. The \"Modern Commuter Service\" starter set is fully compatible with the entire Märklin C Track program and an electric mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/2d/33/2d339d947d49a05ad07ccb90a5e777a71489755326.pdf"
+      ],
+      "retired": true
+    },
+    "29652": {
+      "title": "Märklin Start up - \"Farming Train\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder. 1 axle powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. There is a blinking light on the cab roof. The locomotive functions can be controlled with the wireless infrared locomotive controller designed for children, the Märklin Power Control Stick. The locomotive has coupler hooks. The four-axle and two-axle low side cars are loaded with different farm machines (2 each combines and 1 each plow). All of the cars have Relex couplers. A CLAAS tractor and a manure tanker are included with the set as additional accessories. The different farm machines can be hooked up to the tractor. Train length 39 cm / 15-3/8\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24611 left turnout, and 1 no. 24612 right turnout. A switched mode power pack and an easy-to-use wireless infrared controller, the Märklin Power Control Stick, are included. 2 each AAA batteries are included. This set can be expanded with the C Track extension set and with the entire C Track program. The 74492 electric turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/54/95/5495dac2512866a07dcf857d6a2a4be11583239234.pdf"
+      ],
+      "retired": true
+    },
+    "29653": {
+      "title": "Märklin Start up - \"Farming\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder. 1 axle powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The locomotive has coupler hooks. The four-axle low side car is loaded with different farm machines. There is a tank car. All of the cars have Relex couplers. Train length 39 cm / 15-3/8\". Contents: 12 no. 24130 curved track, 4 no. 24172 straight track, 1 no. 24188 straight track, 1 base station, 1 no. 24224 curved track, 1 no. 24611 left turnout, and 1 no. 24977 track bumper. A switched mode power pack and an easy-to-use wireless infrared controller, the Märklin Power Control Stick, are included. 2 each AAA batteries are included. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 electric turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/70/1e/701e109b073a39cefb735d8f9fe1ff791775713597.pdf",
+        "https://static.maerklin.de/damcontent/7d/95/7d953a04ccc327827c0a94a322c76ee81742802903.pdf"
+      ],
+      "retired": false
+    },
+    "29722": {
+      "title": "Märklin Start up - \"Fire Department\" Starter Set for Children Ages 6 and above",
+      "description": "Model: The locomotive has an mfx digital decoder and a special motor. 1 axle powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The loaded low side car has a removable model of a ladder truck constructed of metal. A card stock cutout sheet of a \"Command Post\" is included to load on the stake car. The tank car has a brakeman's platform. All of the cars have Relex couplers. Train length 45.5 cm / 17-7/8\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24612 right turnout and 1 no. 24611 left turnout. A switched mode power pack and a wireless, easy-to-use infrared controller, the Märklin Power Control Stick, are included. 2 each AAA batteries are included with this set. The set can be expanded with the C Track extension sets and the entire C Track program. The 74492 electric mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/4b/b1/4bb1581ec25c7ab93a089a26589625fc1728390384.pdf",
+        "https://static.maerklin.de/damcontent/84/2f/842f3948f0c1c6da5921fac257e3466a1681910558.pdf"
+      ],
+      "retired": true
+    },
+    "29730": {
+      "title": "Märklin Start up - \"Building Block Train\" Starter Set with Sound and Light Building Blocks.",
+      "description": "Build your own freight train with a motorized locomotive and the cool Märklin Power Control Stick. Remote control with 4 speed levels for both directions and with fast switching of light and sound effects. Moreover, the locomotive has real freight train running sounds, which can be turned on with the light mode \"Permanent Lighting\". Modern light building blocks provide the lighting. The set has in addition to a complete railroad line a tank car and a freight car that you can build on your own for total playing and building fun. The USB charging cable provide the necessary power and the central mfx digital decoder allows you to use the locomotive on a normal Märklin H0 layout! Do you want to transport something else or should your locomotive look like a rocket? No problem – undo the building blocks and simply rebuild with them. P.S.: The light building blocks can also be built differently.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/80/6e/806e482b3268b69a59c755ab85ddd0071569316749.pdf"
+      ],
+      "retired": true
+    },
+    "29752": {
+      "title": "\"Fire Department\" Starter Set",
+      "description": "Model: The locomotive has a digital decoder and a special motor. 1 axle powered. Traction tires. The triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The low side car has a metal model of a removable ladder truck. This set includes a cardstock sheet for a \"command center\" kit to serve as a load on the stake car. The tank car has a brakeman's platform. All of the cars have Relex couplers. Train length 45.5 cm / 17-15/16\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, and 1 no. 24612 right turnout and 1 no. 24611 left turnout. A switched mode power pack and a wireless infrared controller are included. This set can be expanded with the C Track extension sets and the entire C Track program. The 74492 electric turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/b9/34/b93400fb41fee636a9442b55ba267c591560956014.pdf"
+      ],
+      "retired": true
+    },
+    "29828": {
+      "title": "Märklin Start up - \"Batman\" Starter Set",
+      "description": "Model: The locomotive has an mfx digital decoder and a special motor. 1 axle powered. Traction tires. Triple headlights change over with the direction of travel, will work in conventional operation, and can be controlled digitally. The locomotive has coupler hooks. The container transport car is loaded with a transparent 40-foot jail container. The container can be removed from the car and opened for loading. There are 2 play figures made of metal. All of the cars have RELEX couplers. Train length approximately 50 cm / 19-11/16\". Contents: 12 no. 24130 curved track, 4 no. 24188 straight track, 1 base station, 7 no. 24172 straight track, 2 no. 24224 curved track, 1 no. 24612 right turnout and 1 no. 24611 left turnout. A switched mode power pack and a wireless infrared controller, the Märklin Power Control Stick, are included. This set can be expanded with the C Track extension sets and with the entire C Track program. The 74492 turnout mechanism can be installed in the turnouts.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/26/25/26250b5a53905e1c789bb04ca6af4c9a1650956608.pdf"
+      ],
+      "retired": true
+    },
+    "29952": {
+      "title": "Märklin Start up – Auto Transport Train Starter Set",
+      "description": "Model: The locomotive has a light function and a digital decoder. It can be controlled digitally. 1 axle powered. Traction tires for optimal pulling power. The locomotive has triple headlights that change over with the direction of travel and a warning light on the cab roof. The locomotive has coupler hooks for easy coupling to cars. The two-axle auto transport cars have a bi-level superstructure for transporting two autos. The upper platform can be tipped for loading autos. Two Porsche 911 GT3 RS and two Porsche 934 autos are included as loads. The cars have RELEX couplers for fast and easy coupling. Train length 36 cm / 14-3/16\". A loading ramp is included for loading autos from the street to the auto transport cars on the track and vice versa. Contents: 12 sections of 24130 curved track, 1 section of 24188 straight track, 1 Base Station, 4 sections of 24172 straight track, 1 section of 24224 curved track, 1 each 24611 left turnout, and a loading ramp. A switched mode power pack is included. Also included is an ergonomic Power Control Stick for controlling up to 4 locomotives as well as 5 functions. This set can be expanded with the C Track extension sets and the entire C Track assortment. The 74492 electric mechanism can be installed in the turnout.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/bd/55/bd55d300365a0d9ed0bc5e528757d2041655806385.pdf",
+        "https://static.maerklin.de/damcontent/ca/3d/ca3d3b0998e7d85052a28d406759c29d1728390281.pdf"
+      ],
+      "retired": true
+    },
+    "78082": {
+      "title": "\"Construction Site\" Track Extension Set.",
+      "description": "Model: Both cars have Relex couplers. Freight car set length 34.5 cm / 13-9/16\". Contents: 5 no. 24188 straight track, 4 no. 24172 curved track, 1 no. 24224 curved track, 1 no. 24612 right turnout, and 1 no. 24977 track bumper. The construction vehicle is constructed of metal. The set includes a load of \"gravel\".",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/e7/90/e790264cac668420abf5f0c7cce3308a1434542226.pdf"
+      ],
+      "retired": true
+    },
+    "78083": {
+      "title": "\"Construction Site\" Theme Extension Set",
+      "description": "Model: All of the cars have Relex couplers. Length of the freight car set 34.5 cm / 13-9/16\". Contents: 5 no. 24188 straight track, 4 no. 24172 straight track, 1 no. 24224 curved track, 1 no. 24612 right turnout, and 1 no. 24977 track bumper. The construction vehicle is made of metal. \"Gravel\" freight load included.",
+      "manuals": [],
+      "retired": true
+    },
+    "78184": {
+      "title": "Märklin Start up - \"Construction Site\" Theme Extension Set",
+      "description": "Model: All of the cars have Relex couplers. Length of the freight car set 34.5 cm / 13-9/16\". Contents: 5 no. 24188 straight track, 4 no. 24172 straight track, 1 no. 24224 curved track, 1 no. 24612 right turnout, and 1 no. 24977 track bumper. Construction vehicle constructed mostly of metal.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/fc/6f/fc6fe133f1745f4093535d8e675d06531513170716.pdf"
+      ],
+      "retired": true
+    },
+    "78310": {
+      "title": "\"Forestry\" Theme Extension Set",
+      "description": "Model: The low side car is loaded with dressed lumber. The gondola has a load insert of \"wood shavings\". All of the cars have Relex couplers. Length of the freight car set 23.0 cm / 9-1/16\". Contents: 5 no. 24188 straight track, 4 no. 24172 straight track, 1 no. 24224 curved track, 1 no. 24612 right turnout, and 1 no. 24977 track bumper. Plastic kit of a \"sawmill\".",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/93/a2/93a26fe3e5bd103d6b2f95d3b4e91edd1434542381.pdf",
+        "https://static.maerklin.de/damcontent/b1/13/b1136cb82130c40f0d00e9201277d9181434542362.pdf"
+      ],
+      "retired": true
+    },
+    "78452": {
+      "title": "Märklin Start up - \"Container Logistics\" Theme Extension Set.",
+      "description": "Model: The container transport car is loaded with two 20 ft. tank containers. The car has Relex couplers. 3 other containers as well as logistics vehicles are included with the set as additional accessories. Length over the buffers 16 cm / 6-5/16\". Contents: 5 no. 24188 straight track, 4 no. 24172 straight track, 1 no. 24224 curved track, 1 no. 24612 right turnout, and 1 no. 24977 track bumper.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/ec/8a/ec8a798d1ac343977439283b034ff12d1475160397.pdf"
+      ],
+      "retired": true
+    },
+    "78652": {
+      "title": "Märklin Start up - \"Farming Train\" Theme Extension Set",
+      "description": "Model: The two-axle low side car is painted and lettered for CLAAS. The car has Relex couplers. A CLAAS combine and a CLAAS tractor including a trailer are included in the set as additional accessories. The mower unit on the combine is a possible load for the low side car. Length over the buffers 11.5 cm / 4-1/2\". Contents: 5 no. 24188 straight track, 4 no. 24172 straight track, 1 no. 24224 curved track, 1 no. 24612 right turnout, and 1 no. 24977 track bumper.",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/66/20/662006c90b0fe0ec705e752abba59c151566276503.pdf"
+      ],
+      "retired": true
+    },
+    "78752": {
+      "title": "\"Fire Station\" Theme Extension Set",
+      "description": "Model: The four-axle low side car is loaded with 2 removable response vehicles. The car has Relex couplers. Length over the buffers 16.0 cm / 6-5/16\". Contents: 5 no. 24188, 4 no. 24172 straight track, 1 no. 24224 curved track, 1 no. 24612 right turnout, and 1 no. 24977 track bumper. Plastic kit of a \"Fire Station\".",
+      "manuals": [
+        "https://static.maerklin.de/damcontent/a9/ca/a9ca9fdc092ee987085d4f659d4f68131434541872.pdf"
+      ],
+      "retired": true
+    }
+  },
+  "listings": {
+    "starter:1": {
+      "kind": "starter",
+      "page": 1,
+      "total": 33,
+      "articles": [
+        "29030",
+        "29124",
+        "29132",
+        "29133",
+        "29139",
+        "29162",
+        "29163",
+        "29166",
+        "29167",
+        "29169"
+      ],
+      "entries": [
+        {
+          "article": "29030",
+          "title": "Märklin Start up - “Europa-Park” Starter Set"
+        },
+        {
+          "article": "29124",
+          "title": "Märklin Start up - \"Christmas\" Starter Set"
+        },
+        {
+          "article": "29132",
+          "title": "Märklin Start up - \"HARIBO\" Starter Set"
+        },
+        {
+          "article": "29133",
+          "title": "Märklin Start up - \"My Start with Märklin\" Digital Starter Set"
+        },
+        {
+          "article": "29139",
+          "title": ""
+        },
+        {
+          "article": "29162",
+          "title": "\"My Start with Märklin\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29163",
+          "title": "\"My Start with Märklin\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29166",
+          "title": "\"Freight Train with a Class 74\" Starter Set. 230 Volts"
+        },
+        {
+          "article": "29167",
+          "title": "\"Freight Train with a Class 96\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29169",
+          "title": "\"Freight Train with a Class 59\" Starter Set. 230 Volts."
+        }
+      ],
+      "hasNext": true,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=5&tx_torrpdb_search%5Bsubgroupchoice%5D=16&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=1&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1"
+    },
+    "starter:2": {
+      "kind": "starter",
+      "page": 2,
+      "total": 33,
+      "articles": [
+        "29171",
+        "29173",
+        "29179",
+        "29182",
+        "29183",
+        "29184",
+        "29188",
+        "29199",
+        "29296",
+        "29310"
+      ],
+      "entries": [
+        {
+          "article": "29171",
+          "title": "\"DSB\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29173",
+          "title": "\"My Start with Märklin\" Starter Set"
+        },
+        {
+          "article": "29179",
+          "title": "Märklin Start up - \"Jim Button\" Starter Set"
+        },
+        {
+          "article": "29182",
+          "title": "\"Construction Site\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29183",
+          "title": "Märklin Start up - \"Construction Site\" Starter Set. 230 Volts"
+        },
+        {
+          "article": "29184",
+          "title": "Märklin Start up - \"Construction Site\" Starter Set"
+        },
+        {
+          "article": "29188",
+          "title": "Märklin Start up - \"Construction Site\" Starter Set."
+        },
+        {
+          "article": "29199",
+          "title": "Märklin Start up - \"Jim Button and the Wild 13\" Starter Set"
+        },
+        {
+          "article": "29296",
+          "title": "Märklin Start up - \"Communal Service\" Starter Set"
+        },
+        {
+          "article": "29310",
+          "title": "\"Forestry\" Starter Set. 230 Volts"
+        }
+      ],
+      "hasNext": true,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=5&tx_torrpdb_search%5Bsubgroupchoice%5D=16&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=2&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1"
+    },
+    "starter:3": {
+      "kind": "starter",
+      "page": 3,
+      "total": 33,
+      "articles": [
+        "29320",
+        "29321",
+        "29323",
+        "29452",
+        "29453",
+        "29641",
+        "29652",
+        "29653",
+        "29722",
+        "29730"
+      ],
+      "entries": [
+        {
+          "article": "29320",
+          "title": "\"My ICE Start\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29321",
+          "title": "\"German Federal Railroad Freight Train\" Starter Set. 230 Volts"
+        },
+        {
+          "article": "29323",
+          "title": "\"Freight Train\" Starter Set"
+        },
+        {
+          "article": "29452",
+          "title": "Märklin Start up - \"Container Train\" Starter Set"
+        },
+        {
+          "article": "29453",
+          "title": "Märklin Start up - \"Container Train\" Starter Set"
+        },
+        {
+          "article": "29641",
+          "title": "Märklin Start up - \"Modern Commuter Service\" Starter Set"
+        },
+        {
+          "article": "29652",
+          "title": "Märklin Start up - \"Farming Train\" Starter Set"
+        },
+        {
+          "article": "29653",
+          "title": "Märklin Start up - \"Farming\" Starter Set"
+        },
+        {
+          "article": "29722",
+          "title": "Märklin Start up - \"Fire Department\" Starter Set for Children Ages 6 and above"
+        },
+        {
+          "article": "29730",
+          "title": "Märklin Start up - \"Building Block Train\" Starter Set with Sound and Light Building Blocks."
+        }
+      ],
+      "hasNext": true,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=5&tx_torrpdb_search%5Bsubgroupchoice%5D=16&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=3&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1"
+    },
+    "starter:4": {
+      "kind": "starter",
+      "page": 4,
+      "total": 33,
+      "articles": [
+        "29752",
+        "29828",
+        "29952"
+      ],
+      "entries": [
+        {
+          "article": "29752",
+          "title": "\"Fire Department\" Starter Set"
+        },
+        {
+          "article": "29828",
+          "title": "Märklin Start up - \"Batman\" Starter Set"
+        },
+        {
+          "article": "29952",
+          "title": "Märklin Start up – Auto Transport Train Starter Set"
+        }
+      ],
+      "hasNext": false,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=5&tx_torrpdb_search%5Bsubgroupchoice%5D=16&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=4&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1"
+    },
+    "extension:1": {
+      "kind": "extension",
+      "page": 1,
+      "total": 7,
+      "articles": [
+        "78082",
+        "78083",
+        "78184",
+        "78310",
+        "78452",
+        "78652",
+        "78752"
+      ],
+      "entries": [
+        {
+          "article": "78082",
+          "title": "\"Construction Site\" Track Extension Set."
+        },
+        {
+          "article": "78083",
+          "title": "\"Construction Site\" Theme Extension Set"
+        },
+        {
+          "article": "78184",
+          "title": "Märklin Start up - \"Construction Site\" Theme Extension Set"
+        },
+        {
+          "article": "78310",
+          "title": "\"Forestry\" Theme Extension Set"
+        },
+        {
+          "article": "78452",
+          "title": "Märklin Start up - \"Container Logistics\" Theme Extension Set."
+        },
+        {
+          "article": "78652",
+          "title": "Märklin Start up - \"Farming Train\" Theme Extension Set"
+        },
+        {
+          "article": "78752",
+          "title": "\"Fire Station\" Theme Extension Set"
+        }
+      ],
+      "hasNext": false,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=5&tx_torrpdb_search%5Bsubgroupchoice%5D=17&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=1&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1"
+    },
+    "track:1": {
+      "kind": "track",
+      "page": 1,
+      "total": 34,
+      "articles": [
+        "20124",
+        "24900",
+        "24902",
+        "24903",
+        "24904",
+        "24905",
+        "78082",
+        "29124",
+        "29132",
+        "29162"
+      ],
+      "entries": [
+        {
+          "article": "20124",
+          "title": "Märklin Start up – \"Snow-Covered Track\" C Track Extension Set"
+        },
+        {
+          "article": "24900",
+          "title": "Märklin Start up - C1 C Track Extension Set"
+        },
+        {
+          "article": "24902",
+          "title": "Märklin Start up - C Track C2 Extension Set"
+        },
+        {
+          "article": "24903",
+          "title": "Märklin Start up - C Track C3 Track Extension Set"
+        },
+        {
+          "article": "24904",
+          "title": "Märklin Start up - C Track C4 Track Extension Set"
+        },
+        {
+          "article": "24905",
+          "title": "Märklin Start up - C Track C5 Track Extension Set"
+        },
+        {
+          "article": "78082",
+          "title": "\"Construction Site\" Track Extension Set."
+        },
+        {
+          "article": "29124",
+          "title": "Märklin Start up - \"Christmas\" Starter Set"
+        },
+        {
+          "article": "29132",
+          "title": "Märklin Start up - \"HARIBO\" Starter Set"
+        },
+        {
+          "article": "29162",
+          "title": "\"My Start with Märklin\" Starter Set. 230 Volts."
+        }
+      ],
+      "hasNext": true,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=0&tx_torrpdb_search%5Bsubgroupchoice%5D=0&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=1&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1&tx_torrpdb_search%5Bsearchstring%5D=C+Track+Extension"
+    },
+    "track:2": {
+      "kind": "track",
+      "page": 2,
+      "total": 34,
+      "articles": [
+        "29163",
+        "29166",
+        "29167",
+        "29169",
+        "29171",
+        "29173",
+        "29179",
+        "29182",
+        "29183",
+        "29184"
+      ],
+      "entries": [
+        {
+          "article": "29163",
+          "title": "\"My Start with Märklin\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29166",
+          "title": "\"Freight Train with a Class 74\" Starter Set. 230 Volts"
+        },
+        {
+          "article": "29167",
+          "title": "\"Freight Train with a Class 96\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29169",
+          "title": "\"Freight Train with a Class 59\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29171",
+          "title": "\"DSB\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29173",
+          "title": "\"My Start with Märklin\" Starter Set"
+        },
+        {
+          "article": "29179",
+          "title": "Märklin Start up - \"Jim Button\" Starter Set"
+        },
+        {
+          "article": "29182",
+          "title": "\"Construction Site\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29183",
+          "title": "Märklin Start up - \"Construction Site\" Starter Set. 230 Volts"
+        },
+        {
+          "article": "29184",
+          "title": "Märklin Start up - \"Construction Site\" Starter Set"
+        }
+      ],
+      "hasNext": true,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=0&tx_torrpdb_search%5Bsubgroupchoice%5D=0&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=2&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1&tx_torrpdb_search%5Bsearchstring%5D=C+Track+Extension"
+    },
+    "track:3": {
+      "kind": "track",
+      "page": 3,
+      "total": 34,
+      "articles": [
+        "29188",
+        "29296",
+        "29310",
+        "29320",
+        "29321",
+        "29323",
+        "29452",
+        "29453",
+        "29652",
+        "29653"
+      ],
+      "entries": [
+        {
+          "article": "29188",
+          "title": "Märklin Start up - \"Construction Site\" Starter Set."
+        },
+        {
+          "article": "29296",
+          "title": "Märklin Start up - \"Communal Service\" Starter Set"
+        },
+        {
+          "article": "29310",
+          "title": "\"Forestry\" Starter Set. 230 Volts"
+        },
+        {
+          "article": "29320",
+          "title": "\"My ICE Start\" Starter Set. 230 Volts."
+        },
+        {
+          "article": "29321",
+          "title": "\"German Federal Railroad Freight Train\" Starter Set. 230 Volts"
+        },
+        {
+          "article": "29323",
+          "title": "\"Freight Train\" Starter Set"
+        },
+        {
+          "article": "29452",
+          "title": "Märklin Start up - \"Container Train\" Starter Set"
+        },
+        {
+          "article": "29453",
+          "title": "Märklin Start up - \"Container Train\" Starter Set"
+        },
+        {
+          "article": "29652",
+          "title": "Märklin Start up - \"Farming Train\" Starter Set"
+        },
+        {
+          "article": "29653",
+          "title": "Märklin Start up - \"Farming\" Starter Set"
+        }
+      ],
+      "hasNext": true,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=0&tx_torrpdb_search%5Bsubgroupchoice%5D=0&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=3&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1&tx_torrpdb_search%5Bsearchstring%5D=C+Track+Extension"
+    },
+    "track:4": {
+      "kind": "track",
+      "page": 4,
+      "total": 34,
+      "articles": [
+        "29722",
+        "29752",
+        "29828",
+        "29952"
+      ],
+      "entries": [
+        {
+          "article": "29722",
+          "title": "Märklin Start up - \"Fire Department\" Starter Set for Children Ages 6 and above"
+        },
+        {
+          "article": "29752",
+          "title": "\"Fire Department\" Starter Set"
+        },
+        {
+          "article": "29828",
+          "title": "Märklin Start up - \"Batman\" Starter Set"
+        },
+        {
+          "article": "29952",
+          "title": "Märklin Start up – Auto Transport Train Starter Set"
+        }
+      ],
+      "hasNext": false,
+      "source": "https://www.marklin.com/service/product-database?tx_torrpdb_search%5Bfeature%5D=17&tx_torrpdb_search%5Bgaugechoice%5D=2&tx_torrpdb_search%5Bgroupchoice%5D=0&tx_torrpdb_search%5Bsubgroupchoice%5D=0&tx_torrpdb_search%5Bavailable_only%5D=0&tx_torrpdb_search%5Bcatalog%5D=0&tx_torrpdb_search%5Bpage%5D=4&tx_torrpdb_search%5Bperpage%5D=10&tx_torrpdb_search%5Bsearchres%5D=1&tx_torrpdb_search%5Bsearchstring%5D=C+Track+Extension"
+    }
+  }
+}

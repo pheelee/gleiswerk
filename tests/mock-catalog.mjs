@@ -1,5 +1,6 @@
-import {SET_CATALOG} from '../web/sets.mjs?v=20261108-3';
-export function mockCatalogFetch({newArticle='29999',changeArticle='24900',review=[],errors=[],retained=[],discoveryError=false,inconsistent=false,waitForAbort=false}={}){
+import {collectCatalog} from '../lib/catalog-refresh.mjs';
+import {SET_CATALOG} from '../web/sets.mjs?v=20261108-4';
+export function mockManufacturerFetch({newArticle='29999',changeArticle='24900',review=[],errors=[],retained=[],discoveryError=false,inconsistent=false,waitForAbort=false}={}){
  const fresh=structuredClone(SET_CATALOG[0]);fresh.article=newArticle;fresh.name='Neues Test-Startset';fresh.kind='starter';fresh.parts={'24130':12,'24172':2,'24188':1,basis:1};fresh.source='https://www.marklin.com/products/details/article/'+newArticle;fresh.evidence=fresh.source;fresh.checked='2026-11-09';fresh.retired=false;
  const entries=[...SET_CATALOG,...(newArticle?[fresh]:[])];
  return async function fetch(path,options={}){
@@ -18,5 +19,12 @@ export function mockCatalogFetch({newArticle='29999',changeArticle='24900',revie
   set.checked='2026-11-09';set.lastSeen='2026-11-09T10:00:00Z';set.sourceHash='b'.repeat(64);set.verification='online-contents';set.evidence=set.source;
   if(id===changeArticle)set.parts['24172']=(set.parts['24172']||0)+1;
   return Response.json({status:'confirmed',set});
+ };
+}
+
+export function mockCatalogFetch(options={}) {
+ return async function fetch(path,requestOptions={}) {
+  let sets;const report=await collectCatalog({current:SET_CATALOG,fetchImpl:mockManufacturerFetch(options),signal:requestOptions.signal,commit:rows=>{sets=rows;},now:()=> '2026-11-09T10:00:00Z'});
+  return Response.json({schema:1,checkedAt:report.checkedAt,sets,sourceReport:report});
  };
 }

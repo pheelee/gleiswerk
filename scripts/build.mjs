@@ -1,16 +1,17 @@
-import {readFile,readdir,mkdir,writeFile,rm} from 'node:fs/promises';
-import {SET_CATALOG} from '../web/sets.mjs';
-const root=new URL('../',import.meta.url),assets={};
-const types={html:'text/html; charset=utf-8',mjs:'text/javascript; charset=utf-8',css:'text/css; charset=utf-8',svg:'image/svg+xml; charset=utf-8'};
-for(const file of await readdir(new URL('web/',root))){const ext=file.split('.').at(-1);if(!types[ext])continue;assets['/'+file]={type:types[ext],content:await readFile(new URL('web/'+file,root),'utf8')};}
-const hashes=JSON.parse(await readFile(new URL('server/baseline-hashes.json',root),'utf8'));
-const core=(await readFile(new URL('server/catalog-core.mjs',root),'utf8')).replace(/^export /gm,'');
-let worker=await readFile(new URL('server/index.mjs',root),'utf8');worker=worker.replace(/^import [^\n]+\n/,'');
-worker=worker.replace('/* @embed-assets */ {}',JSON.stringify(assets)).replace('/* @embed-catalog */ []',JSON.stringify(SET_CATALOG)).replace('/* @embed-hashes */ {}',JSON.stringify(hashes));
-worker=worker.replace('export function createHandler','function createHandler');
-await rm(new URL('dist/',root),{recursive:true,force:true});
-await mkdir(new URL('dist/server/',root),{recursive:true});await mkdir(new URL('dist/.openai/',root),{recursive:true});
-const manifest=await readFile(new URL('.openai/hosting.json',root),'utf8');if(JSON.parse(manifest).static)throw Error('Remove static hosting only after preparing the Worker migration.');
-await writeFile(new URL('dist/server/index.js',root),core+'\n'+worker);
-await writeFile(new URL('dist/.openai/hosting.json',root),manifest);
-console.log('Built embedded Worker:',Object.keys(assets).length,'assets,',SET_CATALOG.length,'baseline entries.');
+import {cp,mkdir,rm,writeFile,readFile} from 'node:fs/promises';
+import {SET_CATALOG,CATALOG_META} from '../web/sets.mjs';
+import {validateSet} from '../web/catalog-validation.mjs';
+const root=new URL('../',import.meta.url),dist=new URL('dist/',root);
+await rm(dist,{recursive:true,force:true});
+await mkdir(dist,{recursive:true});
+await cp(new URL('web/',root),dist,{recursive:true});
+let snapshot;
+try {snapshot=JSON.parse(await readFile(new URL('data/catalog.json',root),'utf8'));}
+catch(error) {if(error.code!=='ENOENT')throw error;snapshot={schema:1,checkedAt:CATALOG_META.checked+'T00:00:00Z',sets:SET_CATALOG,sourceReport:null};}
+if(snapshot.schema!==1||!Number.isFinite(Date.parse(snapshot.checkedAt))||!Array.isArray(snapshot.sets))throw Error('Invalid catalog snapshot.');
+snapshot.sets=snapshot.sets.map(validateSet);
+const ids=new Set(snapshot.sets.map(set=>set.article));
+if(ids.size!==snapshot.sets.length||SET_CATALOG.some(set=>!ids.has(set.article)))throw Error('Incomplete catalog snapshot.');
+await writeFile(new URL('catalog.json',dist),JSON.stringify(snapshot));
+await writeFile(new URL('.nojekyll',dist),'');
+console.log('Built static site in dist/ with',snapshot.sets.length,'catalog entries.');
