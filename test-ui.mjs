@@ -43,3 +43,11 @@ const stockAfterAdd=saved.get('gleiswerk.inventory.v1');click('#catalog-update-u
 const cacheBefore=saved.get('gleiswerk.catalog.v1');globalThis.fetch=mockCatalogFetch({waitForAbort:true});click('#catalog-update-start');click('#catalog-update-cancel');await refreshDone();assert.equal(saved.get('gleiswerk.catalog.v1'),cacheBefore);assert($('#catalog-update-status').textContent.includes('abgebrochen'));
 globalThis.fetch=mockCatalogFetch({discoveryError:true});click('#catalog-update-start');await refreshDone();assert.equal(saved.get('gleiswerk.catalog.v1'),cacheBefore);assert.equal(saved.get('gleiswerk.inventory.v1'),stockAfterAdd);assert($('#catalog-update-status').textContent.includes('nicht erreichbar'));
 console.log('PASS catalog UI: progress, report, new preset contents, inventory/custom preservation, undo, cancellation and source failure');
+// Reproduce the reported starter combination through the actual catalog controls.
+click('#clear-stock');await updated();click('[data-open-catalog]');
+$('#set-kind').value='all';change('#set-kind');$('#set-quantity').value='1';
+for(const article of ['29296','29653']){$('#set-search').value=article;input('#set-search');click('[data-set-add="'+article+'"]');await updated();}
+click('#catalog-done');assert.equal($('#stat-pieces').textContent,'42');
+$('#family-filter').value='Bahnhöfe';change('#family-filter');click('#tab-stock');await ready();
+assert(Number($('#result-count').textContent)>0);assert($('#selected-name').textContent.includes('R1-Ovalen'));assert($('#large-plan svg'));assert($('#large-plan svg desc').textContent.includes('38 Teilen'));
+console.log('PASS catalog 29296 + 29653 produces a visible 38-piece station in the Bahnhöfe filter without extra tracks');
