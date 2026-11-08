@@ -1,5 +1,5 @@
-import {SET_CATALOG} from './sets.mjs?v=20261108-7';
-import {getCatalog,saveCatalog,validateSet} from './catalog-store.mjs?v=20261108-7';
+import {SET_CATALOG} from './sets.mjs?v=20261108-8';
+import {getCatalog,saveCatalog,validateSet} from './catalog-store.mjs?v=20261108-8';
 const abort=signal=>{if(signal?.aborted)throw new DOMException('Aktualisierung abgebrochen.','AbortError');};
 const diff=(a,b)=>[...new Set([...Object.keys(a||{}),...Object.keys(b||{})])].sort().filter(id=>(a?.[id]||0)!==(b?.[id]||0)).map(part=>({part,before:a?.[part]||0,after:b?.[part]||0}));
 export async function refreshCatalog({fetchImpl=globalThis.fetch,signal,onProgress=()=>{},current=getCatalog(),commit=saveCatalog}={}) {

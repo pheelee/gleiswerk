@@ -1,7 +1,7 @@
-import {storage} from './storage.mjs?v=20261108-7';
-import {CATALOG,PACKS,INITIAL,EXAMPLE,canonicalPart,addInventory,signature} from './engine.mjs?v=20261108-7';
-import {getCatalog,getCatalogMeta} from './catalog-store.mjs?v=20261108-7';
-import {setupSetCatalog} from './catalog-ui.mjs?v=20261108-7';
+import {storage} from './storage.mjs?v=20261108-8';
+import {CATALOG,PACKS,INITIAL,EXAMPLE,canonicalPart,addInventory,signature} from './engine.mjs?v=20261108-8';
+import {getCatalog,getCatalogMeta} from './catalog-store.mjs?v=20261108-8';
+import {setupSetCatalog} from './catalog-ui.mjs?v=20261108-8';
 const $=s=>document.querySelector(s),storageKey='gleiswerk.inventory.v1',savedKey='gleiswerk.favorites.v1';
 const meta=Object.fromEntries(CATALOG.map(a=>[a[0],a]));
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -24,7 +24,7 @@ function updateStats(){const total=Object.values(inventory).reduce((a,b)=>a+b,0)
 function setInventory(next,message){inventory=normalize(next);persist();renderInventory();scheduleSearch();if(message)toast(message);}
 function scheduleSearch(){clearTimeout(debounce);$('#search-message').innerHTML='<span class="status-dot"></span>Bestand geändert · Suche wird aktualisiert …';debounce=setTimeout(runSearch,350);}
 function runSearch(){clearTimeout(debounce);if(worker)worker.terminate();const keep=selected?.key;const opts={mode,maxPieces:Number($('#max-pieces').value),maxResults:240};$('#search-button').disabled=true;$('#search-message').className='search-message searching';$('#search-message').innerHTML='<span class="status-dot"></span>Gleise kombinieren und Anschlüsse prüfen …';
- try{worker=new Worker(new URL('./worker.mjs?v=20261108-7',import.meta.url),{type:'module'});}catch(error){showSearchError(error.message);return;}
+ try{worker=new Worker(new URL('./worker.mjs?v=20261108-8',import.meta.url),{type:'module'});}catch(error){showSearchError(error.message);return;}
  worker.onmessage=({data})=>{if(data.type==='progress'){$('#search-message').innerHTML=`<span class="status-dot"></span>${data.found} Varianten berechnet …`;return;}if(data.type==='error'){showSearchError(data.message);return;}if(data.type==='done'){
   results=data.results.map(p=>({...p,key:signature(p)}));lastSearch=data;pageLimit=12;selected=results.find(p=>p.key===keep)||null;$('#stat-results').textContent=results.length;$('.stats-row>div:nth-child(3)>span:last-child').textContent=mode==='extra'?'Varianten mit Zukauf':'passende Strecken';$('#search-button').disabled=false;$('#search-message').className='search-message'+(data.limited?' warning':'');
   const text=data.limited?`${results.length} Treffer · Ergebnisgrenze erreicht. Filter eingrenzen oder Suchumfang anpassen.`:`${results.length} ${mode==='stock'?'passende Varianten':'Varianten mit Ergänzung'} · ${data.examined} Kandidaten geprüft · bis ${data.maxPieces} Gleisstücke.`;

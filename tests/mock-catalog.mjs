@@ -1,5 +1,5 @@
 import {collectCatalog} from '../lib/catalog-refresh.mjs';
-import {SET_CATALOG} from '../web/sets.mjs?v=20261108-7';
+import {SET_CATALOG} from '../web/sets.mjs?v=20261108-8';
 export function mockManufacturerFetch({newArticle='29999',changeArticle='24900',review=[],errors=[],retained=[],discoveryError=false,inconsistent=false,waitForAbort=false}={}){
  const fresh=structuredClone(SET_CATALOG[0]);fresh.article=newArticle;fresh.name='Neues Test-Startset';fresh.kind='starter';fresh.parts={'24130':12,'24172':2,'24188':1,basis:1};fresh.source='https://www.marklin.com/products/details/article/'+newArticle;fresh.evidence=fresh.source;fresh.checked='2026-11-09';fresh.retired=false;
  const entries=[...SET_CATALOG,...(newArticle?[fresh]:[])];
