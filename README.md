@@ -1,42 +1,69 @@
 # Gleiswerk
 
-German single-page app for a Märklin Start up / C track inventory and a bounded, geometry-checked layout search. Frontend ES modules live in `web/`. A dependency-free Worker serves the embedded frontend and a narrow, read-only manufacturer catalog API. No database or AI-generated track geometry. Inventory, favorites and custom set templates are stored locally in the visitor's browser.
+A German single-page app for planning Märklin Start up / C-track layouts from your own track inventory. It runs entirely as a static website, including on **GitHub Pages**, with no account, application server or database.
 
-## Set catalog, verified 2026-11-08
+## Develop and test
 
-`web/sets.mjs` records all 33 H0 starter sets in the official product database under the Start up feature, including retired references. The four result pages were reconciled against the entry list. Seven theme extensions, C1–C5, and the white 20124 extension bring the catalog to 46 entries. Each entry has its own factual bill of track components, source URL, optional manual URL and date. No inventory is inferred just from the product name: 29652 and 29653 have different quantities, 29166/29167 have a right turnout without a separate countercurve, and the 29952 loading ramp is not counted as a buffer stop. Manuals supply the explicit bills for 29133, 29199, 29641 and 29730 when the online description omits them.
+Requires Node.js 24 or newer.
 
-The shipped baseline is a dated snapshot. The in-app “Jetzt aktualisieren” button discovers current and archived entries from the official manufacturer lists, then checks explicit track quantities on each product page. It does not claim every unlisted international special edition. Visitors can create their own local templates. Search accepts names, article numbers, and dealer-style leading zeros. Set quantity applies atomically; additions over 200 pieces per component are rejected without altering the inventory. Own templates are explicitly distinguished from manufacturer-derived entries.
+```sh
+npm ci
+npm test
+npm run build
+python3 -m http.server 8080 --directory dist
+```
 
-New visitors start with an empty inventory. Existing `gleiswerk.inventory.v1` records are preserved. The optional demonstration loads the generic 29133 starter plus C2, not the original user's two packs. Start up 20xxx track numbers are canonicalized to geometrically equivalent 24xxx numbers; colored/transparent C track is pooled by geometry. Europa-Park height, pillars and rolling stock are outside the 2D track model.
+Open http://localhost:8080. ES modules and the search worker require HTTP rather than opening `index.html` directly. All application URLs are relative, so a project URL such as `https://pheelee.github.io/gleiswerk/` works without changing the source.
 
-## Run
+`web/` contains the frontend. `lib/` contains the build-time manufacturer parser. `scripts/build.mjs` copies frontend files and a catalog snapshot to `dist/`; build output is ignored by Git.
 
-Run `node scripts/build.mjs`. The deterministic build embeds `web/` assets, the baseline and its reviewed document fingerprints into `dist/server/index.js`; the deployment archive contains that module and `.openai/hosting.json`. In the managed environment, use the approved Sites preview only when its browser tool is available. A plain static server can show the frontend, but online refresh requires the Worker API.
+## Deploy to GitHub Pages
 
-## Search contract
+In repository **Settings → Pages → Build and deployment**, select **GitHub Actions** as the source. The `Deploy GitHub Pages` workflow builds, tests and deploys the default branch. It runs on pushes to `main` or `feature/catalog-refresh` when that branch is the default, daily at 03:17 UTC, and manually from **Actions → Deploy GitHub Pages → Run workflow**. If you choose a different default branch, add its name to the workflow's push filter.
 
-- Catalog: fourteen explicitly supported component types, including the 188.3 mm base station.
-- Finite variation of R1/R2 circles, ovals and rounded rectangles, up to four straight pieces per long side and two per short side. Symmetric straight permutations are deduplicated.
-- Single left/right loading sidings with or without a countercurve, straight and curved passing stations, numerically reconstructed C4/C5 manufacturer-derived layouts, independent concentric ovals, and open or buffer-terminated straight shuttle lines. C4 includes the original two open-ended branches as well as a variant with buffer stops, so a 29133+C4 inventory does not spuriously require two extra buffers.
-- Not an exhaustive arbitrary graph solver. Mixed-radius freeform networks, custom branching, inclines and bridges are outside scope. UI states the families and caps explicitly.
-- At most 64 pieces (user adjustable), 240 returned layouts, 4500 candidate cap. Additions show at most 16 missing pieces.
-- Quantities, nominal port alignment/tangents (0.35 mm positional tolerance), and nonadjacent 40 mm roadbed clearance are checked before returning a layout. Directly connected pieces share their approach zone. Collision sampling is about 7 mm; it is a plausibility check, not a manufacturer CAD guarantee or a rolling-stock swept-volume check. Nominal 24.3° catalog rounding causes about 0.15 mm closure remainder at the straight passing station.
-- Curved turnouts use R1 curves and the actual 77.5 mm offset construction, not two concentric R1/R2 arcs. The double slip is modeled by its four ports and straight crossing axes; internal switching paths are not separately measured.
-- At most one base station per connected layout. Two disconnected ovals may each use one. Electrical wiring and rolling-stock clearance require a physical check.
+The deployment job uses GitHub's standard Pages artifact and short-lived deployment identity. No third-party hosting configuration or secrets are needed. The default branch must be allowed to deploy to the `github-pages` environment.
 
-## Checks
+For this repository the Pages address is https://pheelee.github.io/gleiswerk/.
 
-`node test-engine.mjs` checks known layouts, invalid joins and overlaps, inventory matching, additions, empty inventory, aliases and quantity limits. `node test-catalog.mjs` checks every reference against the manufacturer's list, verifies selected source-based quantities, and searches each distinct inventory represented by all 33 starter sets.
+## Catalog updates
 
-`node test-ui.mjs` is a DOM integration test using LinkeDOM from the execution workspace. It exercises empty first visit, catalog search, leading zeros, archive filters, multi-set quantities, custom templates, parts, favorites, imports with aliases and SVG/JSON exports. `node test-ui.mjs --legacy` checks preservation of an existing v1 inventory. These do not claim visual browser QA.
+GitHub Pages cannot run a server-side API, and the manufacturer's website does not allow direct browser requests. The workflow therefore checks the manufacturer catalog **before deployment**. The app's **„Jetzt aktualisieren“** button downloads the latest published `catalog.json`; it does not start a new manufacturer scrape. A link beside the controls opens the workflow so repository maintainers can run an immediate check without placing GitHub credentials in the browser.
 
-Sources and detailed scope are available in the app. C4/C5 are reconstructed from the Märklin booklet at https://www.jrline.sk/Images/64/MA24905.pdf (PDF page 37 / printed page 12), and adjusted to use the pooled starter-set inventory.
+To check the manufacturer locally:
 
-## Online catalog refresh
+```sh
+npm run catalog:update
+npm run build
+```
 
-`server/index.mjs` fetches only fixed paths on `www.marklin.com`; visitor cookies and authorization headers are never forwarded. Product lists are paginated and checked for complete, consistent counts. HTML and quantities are validated conservatively; unsupported component types or ambiguous lists are flagged for review, not partially imported. Previously reviewed manual-only records retain their original verification date when their product description and manual links have not changed.
+The updater discovers starter sets, theme extensions and C-track extension sets, includes archived products, and validates pagination and explicit component quantities. Unknown component types or ambiguous descriptions are reported for review. Previously checked manual-only records retain their original verification date when their description and manual links are unchanged.
 
-The browser saves a validated catalog separately under `gleiswerk.catalog.v1`, with a change report and one previous snapshot for undo. New/changed entries affect future additions only. Existing inventory, custom sets and favorites are untouched. Cancellation, incomplete discovery, total product failure or storage failure retain the active catalog. Partial product failures preserve the affected entries and are listed clearly in the report. No shared server catalog storage or background scheduling is used.
+A successful check writes `data/catalog.json` atomically. GitHub Actions caches this snapshot for future checks, preserving newly discovered entries and their evidence. If a check fails, the previous cached snapshot is published; if no cache exists, the shipped baseline is used. Cache entries may eventually expire. Partial product failures preserve the affected entries and appear in the report. Dates in the app show the actual source check, not simply the button-click time.
 
-`node test-update-server.mjs` checks the actual 46 manufacturer HTML fixtures, conservative extraction and the API boundary. `node test-update-client.mjs` checks refresh, persistence, rollback, cancellation, partial and complete failures and storage failures. DOM integration also exercises the update controls and updated preset quantities. Manufacturer fixtures and the DOM test dependency reside in the execution workspace and are not shipped. Visual browser QA is separate from these checks.
+The browser validates the published snapshot before saving it under `gleiswerk.catalog.v1`, separately from track inventory, favorites and custom templates. One previous catalog snapshot is available for undo. New set contents affect future additions only. A failed download, cancellation, malformed snapshot or storage error leaves the active catalog unchanged; an older published entry cannot overwrite a newer local entry.
+
+## Inventory and privacy
+
+New visitors start with an empty inventory. Inventory, favorites and custom set templates live only in browser local storage. **Storage is specific to the website's origin:** to move from another host or device, export your inventory as JSON on the old site and import it on the new site. Catalog changes do not alter saved inventory.
+
+Search accepts set names, article numbers and leading zeros. Quantities over 200 pieces per component are rejected atomically. Own templates are clearly distinguished from manufacturer entries. Start up `20xxx` track numbers are pooled with geometrically equivalent `24xxx` numbers; colors do not change geometry. Rolling stock, buildings, loading ramps, pillars and heights are outside the two-dimensional model.
+
+## Shipped catalog
+
+The baseline was checked on 2026-11-08 and includes all 33 H0 starter sets in the manufacturer's Start up listing, including retired entries, plus seven theme extensions, C1–C5 and the white 20124 extension: **46 entries**. Each has its own track quantities, source URL and verification date. Manuals supply the explicit bills for 29133, 29199, 29641 and 29730 when their online descriptions omit them. This is not a claim to every unlisted international special edition.
+
+## Search scope
+
+- Fourteen supported track component types, including the 188.3 mm base station.
+- R1/R2 circles, ovals and rounded rectangles, with bounded straight combinations and deduplicated symmetry.
+- Loading sidings, straight and curved passing stations, reconstructed C4/C5 manufacturer plans, independent concentric ovals and straight shuttle lines. C4 supports both original open-ended branches and buffer-terminated variants.
+- A finite search, rather than an exhaustive arbitrary-network solver. Mixed-radius freeform networks, custom branching, inclines and bridges are outside scope.
+- Up to 64 pieces by default, 240 results and 4,500 candidates. Addition suggestions show at most 16 missing pieces.
+- Nominal joins and tangents are checked with 0.35 mm position tolerance, plus sampled 40 mm roadbed clearance. This is a plausibility check, not a manufacturer CAD or rolling-stock clearance guarantee. Rounded catalog angles cause about 0.15 mm closure remainder at the straight passing station.
+- Curved turnouts use the R1/77.5 mm offset construction. The double slip uses its four ports and straight crossing axes; internal switching paths are not separately measured. At most one base station is allowed in each connected layout.
+
+## Verification and sources
+
+`npm test` checks geometry, all baseline sets, manufacturer parsing and pagination, catalog refresh and rollback, failures and cancellations, DOM interactions, legacy inventory preservation, exports and static assets at a project subpath. Manufacturer test excerpts are included under `tests/fixtures/`; no network is needed for tests. DOM checks do not replace visual browser testing.
+
+Each set links to its manufacturer evidence in the app. C4/C5 plans are reconstructed from the Märklin booklet at https://www.jrline.sk/Images/64/MA24905.pdf (PDF page 37 / printed page 12), using pooled starter-set inventory. Gleiswerk is an independent tool, not an official Märklin product.

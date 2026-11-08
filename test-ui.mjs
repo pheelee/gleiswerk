@@ -1,7 +1,7 @@
 // DOM integration test, not visual browser QA.
 import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
-import {parseHTML} from '/workspace/work/gleiswerk-tests/node_modules/linkedom/esm/index.js';
+import {parseHTML} from 'linkedom';
 import {search,START,INITIAL} from './web/engine.mjs';
 const {window,document}=parseHTML(await readFile(new URL('./web/index.html',import.meta.url),'utf8'));
 const saved=new Map(),downloads=[],legacy=process.argv.includes('--legacy');

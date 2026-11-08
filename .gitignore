@@ -1,4 +1,6 @@
 node_modules/
+dist/
 *.tar.gz
 .DS_Store
-.openai/.local/
+data/catalog.json
+data/catalog.json.tmp
