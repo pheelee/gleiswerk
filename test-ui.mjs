@@ -49,5 +49,6 @@ $('#set-kind').value='all';change('#set-kind');$('#set-quantity').value='1';
 for(const article of ['29296','29653']){$('#set-search').value=article;input('#set-search');click('[data-set-add="'+article+'"]');await updated();}
 click('#catalog-done');assert.equal($('#stat-pieces').textContent,'42');
 $('#family-filter').value='Bahnhöfe';change('#family-filter');click('#tab-stock');await ready();
-assert(Number($('#result-count').textContent)>0);assert($('#selected-name').textContent.includes('R1-Ovalen'));assert($('#large-plan svg'));assert($('#large-plan svg desc').textContent.includes('38 Teilen'));
-console.log('PASS catalog 29296 + 29653 produces a visible 38-piece station in the Bahnhöfe filter without extra tracks');
+assert.equal($('#result-count').textContent,'0');click('#tab-extra');await ready();
+assert(Number($('#result-count').textContent)>0);assert.equal($('#selected-name').textContent,'Ausweichbahnhof');assert($('#plan-chips').textContent.includes('1 Gleise fehlen'));assert($('#large-plan svg'));click('#show-parts');assert($('#parts-panel').textContent.includes('24612'));
+console.log('PASS paired starter UI: no false station in stock mode; real passing-loop suggestion shows one missing right turnout');
