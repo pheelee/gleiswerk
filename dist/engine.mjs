@@ -1,17 +1,23 @@
 // C-Gleis geometry. Catalog angles/lengths are rounded. Units: mm/radians.
+import {SET_BY_ARTICLE} from './sets.mjs?v=20261108-2';
 export const CATALOG = [
  ['24172','Gerade','171,7 mm','Geraden'],['24188','Gerade','188,3 mm','Geraden'],['24077','Kurze Gerade','77,5 mm','Geraden'],['24094','Kurze Gerade','94,2 mm','Geraden'],['basis','Basisstation','188,3 mm','Geraden'],
  ['24130','Bogen R1','360 mm · 30°','Bögen'],['24230','Bogen R2','437,5 mm · 30°','Bögen'],['24224','Gegenbogen','437,5 mm · 24,3°','Bögen'],
  ['24611','Weiche links','188,3 mm · 24,3°','Weichen & Abschlüsse'],['24612','Weiche rechts','188,3 mm · 24,3°','Weichen & Abschlüsse'],['24671','Bogenweiche links','R1 · 30°','Weichen & Abschlüsse'],['24672','Bogenweiche rechts','R1 · 30°','Weichen & Abschlüsse'],['24620','Doppelkreuzungsweiche','188,3 mm · 24,3°','Weichen & Abschlüsse'],['24977','Prellbock','77,5 mm','Weichen & Abschlüsse']
 ];
-export const START={'24130':12,'24172':4,'24188':1,basis:1,'24224':1,'24611':1,'24977':1};
-export const PACKS={farm:{name:'Landwirtschaft',article:'29653',parts:START},city:{name:'Kommunaldienst',article:'29296',parts:START},
- C1:{name:'C1',article:'24900',parts:{'24172':2,'24224':1,'24611':1,'24977':1}},
- C2:{name:'C2',article:'24902',parts:{'24188':3,'24172':5,'24224':2,'24611':1,'24612':1}},
- C3:{name:'C3',article:'24903',parts:{'24188':7,'24172':7,'24130':2,'24671':1,'24672':1}},
- C4:{name:'C4',article:'24904',parts:{'24188':4,'24172':4,'24077':2,'24130':2,'24230':6,'24671':1,'24672':1}},
- C5:{name:'C5',article:'24905',parts:{'24188':7,'24172':7,'24094':2,'24224':1,'24611':1,'24612':1,'24620':1,'24977':4}}};
-export const INITIAL=Object.fromEntries(CATALOG.map(([id])=>[id,(START[id]||0)*2]));
+export const START=SET_BY_ARTICLE['29653'].parts;
+// Keep legacy keys for existing shortcuts; one catalog is the source of truth.
+export const PACKS={...SET_BY_ARTICLE,farm:SET_BY_ARTICLE['29653'],city:SET_BY_ARTICLE['29296'],...Object.fromEntries(['24900','24902','24903','24904','24905'].map((id,i)=>['C'+(i+1),SET_BY_ARTICLE[id]]))};
+export const INITIAL=Object.fromEntries(CATALOG.map(([id])=>[id,0]));
+export const EXAMPLE=Object.fromEntries(CATALOG.map(([id])=>[id,(SET_BY_ARTICLE['29133'].parts[id]||0)+(SET_BY_ARTICLE['24902'].parts[id]||0)]));
+export const ALIASES=Object.fromEntries(CATALOG.filter(([id])=>id.startsWith('24')).map(([id])=>['20'+id.slice(2),id]));
+ALIASES['24089']='basis';
+export function canonicalPart(id){return ALIASES[id]||id;}
+export function addInventory(stock,parts,quantity=1){
+ if(!Number.isInteger(quantity)||quantity<1||quantity>20)throw new Error('Bitte 1 bis 20 Sets wählen.');
+ const out={...INITIAL,...stock};
+ for(const [article,n]of Object.entries(parts)){const id=canonicalPart(article);if(!Object.hasOwn(INITIAL,id)||!Number.isInteger(n)||n<0)throw new Error('Ungültiger Gleisinhalt.');out[id]=(out[id]||0)+n*quantity;if(out[id]>200)throw new Error('Maximal 200 Stück pro Gleisart.');}return out;
+}
 const D=Math.PI/180,L={'24172':171.7,'24188':188.3,'24077':77.5,'24094':94.2,basis:188.3,'24977':77.5};
 const P=(x=0,y=0,a=0)=>({x,y,a:a*D});
 const back=p=>({...p,a:p.a+Math.PI});
@@ -42,6 +48,13 @@ export function loading(extra=[],three=false){const b=new Layout(three?'Drei Lad
  [p,d]=b.turnout(p,'24611');p=b.seq(p,three?['24172','24172','24172','24188','24188']:['24172','24172','24188']);b.seq(p,repeat('24130',6),-1);
  for(const x of [a,c,d].filter(Boolean))b.spur(x,['24172',...extra]);return b;
 }
+export function singleLoading(hand='24611',n=2,counter=true,spur='24188',buffer=true){
+ const b=new Layout(buffer?`Oval mit einem ${hand==='24611'?'linken':'rechten'} Abstellgleis`:'Oval mit offenem Abstellgleis','Abstellgleise');let p=P(),branch;
+ [p,branch]=b.turnout(p,hand);p=b.seq(p,repeat('24172',n));p=b.seq(p,repeat('24130',6),-1);p=b.seq(p,[...repeat('24172',n),'24188']);b.seq(p,repeat('24130',6),-1);
+ if(counter)branch=b.curve(branch,'24224',hand==='24611'?-1:1);b.seq(branch,[...(Array.isArray(spur)?spur:[spur]),...(buffer?['24977']:[])]);
+ b.note=counter?'Abzweig mit Gegenbogen und geradem Ladegleis.':'Schräges Abstellgleis ohne Gegenbogen; für ältere Startsets mit einer rechten Weiche.';
+ if(!buffer){b.closed=false;b.note+=' Ein Gleisende ist offen; einen passenden Abschluss im Betrieb vorsehen.';}return b;
+}
 export function passing(straights=['24188','24172'],loads=true){const b=new Layout(loads?'Ausweichbahnhof mit zwei Ladegleisen':'Ausweichbahnhof','Bahnhöfe');let p=P(),a,c,d;[p,a]=b.turnout(p,'24611');p=b.seq(p,['24172',...straights,'24172']);const span=376.6+343.4+straights.reduce((s,x)=>s+L[x],0);
  const [right,branch]=b.turnout(P(span,0,180),'24612');p=b.seq(P(span,0),repeat('24130',6));
  if(loads){[p,c]=b.turnout(p,'24611');p=b.seq(p,['24172','24172']);[p,d]=b.turnout(p,'24611');p=b.seq(p,['24172','24188']);for(const x of [c,d])b.spur(x);}
@@ -52,7 +65,7 @@ export function curvedStation(loads=true){const b=new Layout(loads?'Bogenbahnhof
  li=b.seq(li,repeat('24130',2));lo=b.seq(lo,repeat('24130',2));ri=b.seq(ri,repeat('24130',2),-1);ro=b.seq(ro,repeat('24130',2),-1);
  b.seq(li,['24172','24188','24172','24188','24172','24188']);b.seq(lo,['24172','24188','24172','24188','24172','24188']);let p=b.seq(P(span+360,360,90),repeat('24130',3));
  if(loads){let a,c;[p,a]=b.turnout(p,'24611');p=b.seq(p,repeat('24172',2));[p,c]=b.turnout(p,'24611');p=b.seq(p,['24172','24188']);b.spur(a);b.spur(c);}else p=b.seq(p,['24172','24188','24172','24188','24172','24188']);b.seq(p,repeat('24130',3));return b;}
-export function c4(){const b=new Layout('C4 · Geschwungene Herstellerstrecke','Herstellerpläne');let [inside,p]=b.curved(P(0,0,-90),'24671');p=b.seq(p,repeat('24130',2));p=b.seq(p,['24188','24172','24188','24172','24188','24077']);p=b.curve(p,'24130');let outer;[p,outer]=b.reverseInner(p,'24672');p=b.curve(p,'24130');p=b.seq(p,repeat('24230',3));p=b.curve(p,'24130');p=b.curve(p,'24130',-1);p=b.line(p,'24188');p=b.curve(p,'24130',-1);p=b.curve(p,'24130');b.seq(p,repeat('24130',3));p=b.seq(inside,repeat('24130',3));p=b.curve(p,'24230');p=b.line(p,'24077');p=b.curve(p,'24230',-1);b.seq(p,['24172','24188','24977']);b.seq(b.curve(outer,'24230',-1),['24172','24188','24172','24172','24977']);for(const x of b.pieces){x.paths=x.paths.map(a=>a.map(p=>({...p,x:-p.x,y:-p.y})));x.ports=x.ports.map(p=>({...p,x:-p.x,y:-p.y,a:p.a+Math.PI}));}b.note='Nach Märklin S1 + C4, gedreht; zwei Prellböcke ergänzt.';return b;}
+export function c4(buffers=true){const b=new Layout(buffers?'C4 · Geschwungene Herstellerstrecke':'C4 · Herstellerplan mit offenen Enden','Herstellerpläne');let [inside,p]=b.curved(P(0,0,-90),'24671');p=b.seq(p,repeat('24130',2));p=b.seq(p,['24188','24172','24188','24172','24188','24077']);p=b.curve(p,'24130');let outer;[p,outer]=b.reverseInner(p,'24672');p=b.curve(p,'24130');p=b.seq(p,repeat('24230',3));p=b.curve(p,'24130');p=b.curve(p,'24130',-1);p=b.line(p,'24188');p=b.curve(p,'24130',-1);p=b.curve(p,'24130');b.seq(p,repeat('24130',3));p=b.seq(inside,repeat('24130',3));p=b.curve(p,'24230');p=b.line(p,'24077');p=b.curve(p,'24230',-1);b.seq(p,['24172','24188',...(buffers?['24977']:[])]);b.seq(b.curve(outer,'24230',-1),['24172','24188','24172','24172',...(buffers?['24977']:[])]);for(const x of b.pieces){x.paths=x.paths.map(a=>a.map(p=>({...p,x:-p.x,y:-p.y})));x.ports=x.ports.map(p=>({...p,x:-p.x,y:-p.y,a:p.a+Math.PI}));}b.closed=buffers;b.note=buffers?'Nach Märklin S1 + C4, gedreht; zwei Prellböcke ergänzt.':'Nach Märklin S1 + C4, gedreht. Beide Stumpfgleisenden sind wie in der Vorlage offen; im Betrieb absichern.';return b;}
 export function c5(){const b=new Layout('C5 · Kompakter Rangierbahnhof','Rangieren');let p=P(),branch;[p,branch]=b.turnout(p,'24611');p=b.seq(p,['24172','24188','24172','24188']);p=b.seq(p,repeat('24130',6));p=b.seq(p,['24188','24172','24188','24172','24188']);b.seq(p,repeat('24130',6));const [diagonal,lower]=b.turnout(branch,'24612');b.seq(lower,['24172','24188','24172','24977']);const [left,right,upper]=b.slip(diagonal);b.seq(left,['24188','24172','24094','24977']);b.seq(right,['24188','24172','24094','24977']);b.seq(b.curve(upper,'24224',-1),['24188','24172','24977']);b.note='Nach dem Prinzip von Märklin S1 + C5; vier Stumpfgleise.';return b;}
 export function doubleOval(){const b=new Layout('Zwei unabhängige Fahrkreise','Rundstrecken');for(const [y,r]of[[360,'24130'],[437.5,'24230']]){let p=P(0,y);p=b.seq(p,['24172','24172','24188']);p=b.seq(p,repeat(r,6),-1);p=b.seq(p,['24172','24172','24188']);b.seq(p,repeat(r,6),-1);}b.note='Elektrisch getrennt. Je Fahrkreis eine eigene Einspeisung.';return b;}
 export function assignBases(layout,inventory){const q=structuredClone(layout);let stock188=inventory['24188']||0,bases=inventory.basis||0;const needed=count(q.pieces)['24188']||0;let use=Math.min(bases,needed); // First use one base on each disconnected oval when possible.
@@ -81,7 +94,9 @@ export function summarize(layout,inventory){const used=count(layout.pieces),miss
  return {...layout,used,missing,total,missingTotal:Object.values(missing).reduce((a,b)=>a+b,0),width:(maxX-minX)/10,height:(maxY-minY)/10,bounds:{minX,minY,maxX,maxY},sidings:used['24977']||0,utilization:total/Math.max(1,Object.values(inventory).reduce((a,b)=>a+b,0))};}
 function combos(parts,maxLen=4){const out=[[]];function walk(arr,start){if(arr.length>=maxLen)return;for(let i=start;i<parts.length;i++){const q=[...arr,parts[i]];out.push(q);walk(q,i);}}walk([],0);return out;}
 export function* candidates(inventory,limit=28){
- yield loading();yield loading([],true);yield passing();yield passing(['24188','24172'],false);yield curvedStation();yield curvedStation(false);yield c4();yield c5();yield doubleOval();
+ yield loading();yield loading([],true);yield passing();yield passing(['24188','24172'],false);yield curvedStation();yield curvedStation(false);yield c4();yield c4(false);yield c5();yield doubleOval();
+ for(const hand of ['24611','24612'])for(const n of [1,2])for(const counter of [true,false])for(const spur of ['24172','24188',['24172','24188']])yield singleLoading(hand,n,counter,spur);
+ for(const hand of ['24611','24612'])yield singleLoading(hand,2,true,'24188',false);
  for(let n=1;n<=4;n++)yield loading(repeat('24188',n));
  const mains=combos(['24172','24188','24077','24094'],4),small=combos(['24172','24188','24077','24094'],2);
  for(const r of ['24130','24230'])for(const a of mains){if(12+a.length*2>limit)continue;yield oval(a,[],r);for(const b of small){if(!b.length||12+2*(a.length+b.length)>limit)continue;
