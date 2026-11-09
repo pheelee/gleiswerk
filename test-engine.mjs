@@ -20,3 +20,15 @@ assert.equal(addInventory(INITIAL,{'20130':6,'24130':6})['24130'],12);
 const n=addInventory(INITIAL,PACKS['29652'].parts,2);assert.equal(n['24172'],14);assert.equal(n['24612'],2);assert.equal(Object.values(n).reduce((a,b)=>a+b),56);
 assert.throws(()=>addInventory(n,{'24130':200}));assert.equal(n['24130'],24);assert.throws(()=>addInventory(INITIAL,{'toString':1}));
 console.log('PASS empty default, legacy inventory, aliases, quantities, atomic capacity checks and geometry');
+
+// The exact paired starters cannot supply a conventional passing loop's right turnout.
+const starters=addInventory(addInventory(INITIAL,PACKS.city.parts),PACKS.farm.parts);
+assert.equal(starters['24611'],2);assert.equal(starters['24612'],0);
+assert(!(await search(starters)).results.some(p=>p.family==='Bahnhöfe'));
+const extras=await search(starters,{mode:'extra'});
+const minimal=extras.results.filter(p=>p.family==='Bahnhöfe'&&p.name==='Ausweichbahnhof'&&p.missingTotal===1);
+assert(minimal.length);assert(minimal.every(p=>p.missing['24612']===1&&p.used['24130']===12&&p.validation.ok));
+const oneRight=addInventory(starters,{'24612':1});
+const passResults=await search(oneRight);assert(passResults.results.some(p=>p.family==='Bahnhöfe'&&p.used['24130']===12&&p.used['24611']===1&&p.used['24612']===1&&!p.missingTotal));
+for(const straights of [[],['24172']]){const plan=assignBases(passing(straights,false),oneRight);assert(validate(plan).ok);assert.equal(summarize(plan,oneRight).missingTotal,0);assert.equal(plan.pieces.filter(p=>p.part==='basis').length,1);}
+console.log('PASS paired starters: true passing loops need exactly one additional 24612 and become buildable when it is added');

@@ -81,3 +81,7 @@ Previews have their own inventories, catalog cache, favorites and custom templat
 The **Darstellung** control offers **Automatisch**, **Hell** and **Dunkel**. Automatic is the default and follows the browser's `prefers-color-scheme`, including changes while the app is open. A manual choice is saved locally and can be reset to Automatic. It is applied before styles load to avoid a light flash on a dark preference. Without JavaScript, the stylesheet still follows the browser preference. Theme changes synchronize across tabs.
 
 The palette covers catalog dialogs, forms, result cards and SVG drawings. Printed plans and exported SVGs use a self-contained light palette for readability. Theme preference is stored separately from inventories under `gleiswerk.theme.v1`. Tests check preference behavior, fallback when storage is unavailable, text contrast and drawing colors.
+
+### Passing loops with Kommunaldienst + Landwirtschaft
+
+29296 and 29653 each contain a left turnout. Their stock therefore does not supply the right turnout required by the standard straight passing loop. Shorter passing-loop templates let the search suggest a real passing loop under **Mit Ergänzung** with exactly one missing 24612, using the existing curves, countercurves and straight tracks. With that turnout added, the plan appears under **Mit Bestand → Bahnhöfe**.

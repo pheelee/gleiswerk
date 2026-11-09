@@ -1,5 +1,5 @@
 // C-Gleis geometry. Catalog angles/lengths are rounded. Units: mm/radians.
-import {SET_BY_ARTICLE} from './sets.mjs?v=20261108-5';
+import {SET_BY_ARTICLE} from './sets.mjs?v=20261108-8';
 export const CATALOG = [
  ['24172','Gerade','171,7 mm','Geraden'],['24188','Gerade','188,3 mm','Geraden'],['24077','Kurze Gerade','77,5 mm','Geraden'],['24094','Kurze Gerade','94,2 mm','Geraden'],['basis','Basisstation','188,3 mm','Geraden'],
  ['24130','Bogen R1','360 mm · 30°','Bögen'],['24230','Bogen R2','437,5 mm · 30°','Bögen'],['24224','Gegenbogen','437,5 mm · 24,3°','Bögen'],
@@ -94,7 +94,7 @@ export function summarize(layout,inventory){const used=count(layout.pieces),miss
  return {...layout,used,missing,total,missingTotal:Object.values(missing).reduce((a,b)=>a+b,0),width:(maxX-minX)/10,height:(maxY-minY)/10,bounds:{minX,minY,maxX,maxY},sidings:used['24977']||0,utilization:total/Math.max(1,Object.values(inventory).reduce((a,b)=>a+b,0))};}
 function combos(parts,maxLen=4){const out=[[]];function walk(arr,start){if(arr.length>=maxLen)return;for(let i=start;i<parts.length;i++){const q=[...arr,parts[i]];out.push(q);walk(q,i);}}walk([],0);return out;}
 export function* candidates(inventory,limit=28){
- yield loading();yield loading([],true);yield passing();yield passing(['24188','24172'],false);yield curvedStation();yield curvedStation(false);yield c4();yield c4(false);yield c5();yield doubleOval();
+ yield loading();yield loading([],true);yield passing();for(const straights of combos(['24172','24188'],3))yield passing(straights,false);yield curvedStation();yield curvedStation(false);yield c4();yield c4(false);yield c5();yield doubleOval();
  for(const hand of ['24611','24612'])for(const n of [1,2])for(const counter of [true,false])for(const spur of ['24172','24188',['24172','24188']])yield singleLoading(hand,n,counter,spur);
  for(const hand of ['24611','24612'])yield singleLoading(hand,2,true,'24188',false);
  for(let n=1;n<=4;n++)yield loading(repeat('24188',n));
